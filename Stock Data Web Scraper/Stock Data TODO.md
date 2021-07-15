@@ -15,6 +15,6 @@ TODO List ----------------------------------------------------------------------
 * Downloading the csv file -------------------------------------------------------------> done |
 * Changing the file name of webscraper to excel spreadsheet scanner --------------------> done |
 * Having a file that moves documents from downloads to current directory ---------------> done |
-* Implementing file that moves documents from downloads to current directory ----------->      |
+* Implementing file that moves documents from downloads to current directory -----------> done |
 * Interpretting the downloaded csv stock file ------------------------------------------>      |
 ------------------------------------------------------------------------------------------------
