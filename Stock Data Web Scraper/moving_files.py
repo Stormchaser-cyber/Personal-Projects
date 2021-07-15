@@ -46,6 +46,26 @@ def move_file(file_name, source_folder, destination_folder):
 
     shutil.move(source_string, destination_string) # actually moving the file
 
+def move_files(in_list, source_folder, destination_folder):
+    """
+    move_files function moves all files passed into it from the in_list parameter, from the source folder parameter
+    to the destination_folder parameter
+
+    Parameters
+    ----------
+    List
+        in_list: the list of files to move from the source folder to the destination folder
+    String
+        source_folder: the file path of the source folder (NOTE: it should end without a slash or backslash)
+        destination_folder: the file path of the desired folder (NOTE: it should end without a slash or backslash)
+    """
+
+    for item in in_list:
+        source_string = source_folder + '/' + item
+        destination_string = destination_folder + '/' + item
+
+        shutil.move(source_string, destination_string)
+
 def main():
     """
     Main function to run test code and to get initial code working
@@ -59,8 +79,7 @@ def main():
 
     items_to_move = scan_folder(source_folder, criteria)
 
-    for item in items_to_move:
-        move_file(item, source_folder, destination_folder)
+    move_files(items_to_move, source_folder, destination_folder)
     
 if __name__ == "__main__":
     main()
