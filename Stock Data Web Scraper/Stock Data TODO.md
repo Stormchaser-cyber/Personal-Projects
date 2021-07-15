@@ -20,8 +20,8 @@ TODO List
 * Having a file that moves documents from downloads to current directory ---------------> done 
 * Implementing file that moves documents from downloads to current directory -----------> done 
 * Having moving file scan the downloads folder and having it select all records that match our data ---------> done
-* Creating a move function that takes in a list of files to move -----------------------> 
-* Adding documentation for functions ---------------------------------------------------> 
+* Creating a move function that takes in a list of files to move -----------------------> done
+* Adding documentation for functions ---------------------------------------------------> done
 * Interpretting the downloaded csv stock file ------------------------------------------>      
 * Main bot program --------------------------------------------------------------------->      
 * Trading logic ------------------------------------------------------------------------>      
