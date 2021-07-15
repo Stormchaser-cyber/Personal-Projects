@@ -9,7 +9,7 @@ Big Ideas
 
 Things to Implement
 ------------------------------------------------------------------------------------------------
-* Which scraper module to use - done
+* Which scraper module to use ------------------------------------------------------------> done
 * Gathering data and storing data into lists or some data structure?
 * Information Gathered? - (Date, Time, Stock Name, Price, Type -- Stock/Bond/Crypto)
 
