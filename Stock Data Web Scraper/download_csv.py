@@ -1,0 +1,39 @@
+# download_csv.py
+
+# URL: "https://www.nasdaq.com/market-activity/stocks/screener"
+# ID: "nasdaq-screener__form-button--download ns-download-1")
+
+from selenium import webdriver
+import time
+
+def download_csv_from_url_by_xpath(url, xpath):
+    """
+    download_csv_from_url_by_xpath function looks up a specific url, searches for the element based off of the full xpath
+    and if possible, clicks on the element to download the data as a csv file.
+
+    Parameters
+    ----------
+    String
+        url: the string of the url of the website
+        xpath: the xpath of the element in the html code
+    """
+    browser = webdriver.Chrome() # Creating a chrome browser object
+
+    browser.get(url) # looking up the URL of the website
+
+    browser.find_element_by_xpath(xpath).click() # navigating through the xpath and clicking on the element
+
+    time.sleep(5) # sleeping for 5 seconds to ensure that the download is able to go through
+
+    browser.quit() # closing all terminals and windows
+
+def main():
+    """
+    Main function to control and run the functions as you initially would in main
+    """
+
+    download_csv_from_url_by_xpath(url="https://www.nasdaq.com/market-activity/stocks/screener",
+                                   xpath='/html/body/div[2]/div/main/div[2]/article/div[3]/div[1]/div/div/div[3]/div[2]/div[2]/div/button')
+
+if __name__ == "__main__":
+    main()
