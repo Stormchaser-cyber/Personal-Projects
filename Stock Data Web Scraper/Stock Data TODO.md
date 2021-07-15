@@ -19,6 +19,9 @@ TODO List
 * Changing the file name of webscraper to excel spreadsheet scanner --------------------> done 
 * Having a file that moves documents from downloads to current directory ---------------> done 
 * Implementing file that moves documents from downloads to current directory -----------> done 
+* Having moving file scan the downloads folder and having it select all records that match our data ---------> done
+* Creating a move function that takes in a list of files to move -----------------------> 
+* Adding documentation for functions ---------------------------------------------------> 
 * Interpretting the downloaded csv stock file ------------------------------------------>      
 * Main bot program --------------------------------------------------------------------->      
 * Trading logic ------------------------------------------------------------------------>      
