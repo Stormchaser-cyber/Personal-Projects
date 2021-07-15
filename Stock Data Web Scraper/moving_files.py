@@ -6,11 +6,25 @@ import shutil
 from os import listdir
 from os.path import isfile
 
-def scan_folder(source_folder):
+def scan_folder(source_folder, criteria):
+    """
+    scan_folder scans the folder passed into the function and determines which items to select that match the criteria
+
+    Parameters
+    ----------
+    String
+        source_folder: the folder in which we should search for files
+        criteria: the string to search for similarities
+
+    Returns
+    -------
+    List
+        files_to_move: a list of strings which are the file names of files to move
+    """
     files_to_move = []
     
     for item in listdir(source_folder):
-        if item[0:15] == 'nasdaq_screener':
+        if item[0:15] == criteria:
             files_to_move.append(item)
 
     return files_to_move
@@ -36,13 +50,14 @@ def main():
     """
     Main function to run test code and to get initial code working
     """
+    criteria = 'nasdaq_screener'
     file_name = 'nasdaq_screener_1626390668384.csv'
     source_folder = 'C:/Users/tedst/Downloads'
     destination_folder = 'C:/Users/tedst/Documents/Augsburg University Files/Programming Files/Bot Projects/Stock Data Web Scraper/Stock Spreadsheets'
 
     #move_file(file_name=file_name, file_type=file_type, source_folder=source_folder, destination_folder=destination_folder)
 
-    items_to_move = scan_folder(source_folder)
+    items_to_move = scan_folder(source_folder, criteria)
 
     for item in items_to_move:
         move_file(item, source_folder, destination_folder)
