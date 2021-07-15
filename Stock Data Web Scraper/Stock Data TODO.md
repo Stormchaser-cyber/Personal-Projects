@@ -17,4 +17,8 @@ TODO List ----------------------------------------------------------------------
 * Having a file that moves documents from downloads to current directory ---------------> done |
 * Implementing file that moves documents from downloads to current directory -----------> done |
 * Interpretting the downloaded csv stock file ------------------------------------------>      |
+* Main bot program --------------------------------------------------------------------->      |
+* Trading logic ------------------------------------------------------------------------>      |
+* Try and catch blocks for error management -------------------------------------------->      |
+* Full implementation ------------------------------------------------------------------>      |
 ------------------------------------------------------------------------------------------------
