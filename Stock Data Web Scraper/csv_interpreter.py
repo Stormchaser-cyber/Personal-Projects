@@ -21,20 +21,35 @@ def update_sorted_spreadsheet_records(filename):
         writer = csv.writer(csv_file, delimiter=',')
         writer.writerow([filename])
 
-def main():
+def get_files_already_sorted():
+    """
+    get_files_already_sorted function scans the records spreadsheet and
+    returns a list of all of the file names already sorted
+
+    Returns
+    -------
+    List
+        files_already_sorted: the list containing the file names as strings that
+                              are already sorted.
+    """
     files_already_sorted = []
     
-    with open('sorted_spreadsheet_records') as csv_file:
+    with open('sorted_spreadsheet_records.csv') as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
         line_count = 0
-        for row in csv_reader:
+        for item in csv_reader:
             if line_count != 0:
-                files_already_sorted.append(row)
+                files_already_sorted.append("".join(item))
+                
             line_count += 1
 
-    print(files_already_sorted)
+    return files_already_sorted
+
+def main():
+    files = get_files_already_sorted()
+    print(files)
         
         
 
 if __name__ == '__main__':
-    #main()
+    main()
