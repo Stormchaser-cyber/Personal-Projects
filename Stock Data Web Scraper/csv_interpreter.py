@@ -6,6 +6,7 @@
 from os import listdir
 from os.path import isfile
 import csv
+import moving_files
 
 def update_sorted_spreadsheet_records(filename):
     """
@@ -19,7 +20,7 @@ def update_sorted_spreadsheet_records(filename):
     """
     with open('sorted_spreadsheet_records.csv', mode='a', newline='') as csv_file:
         writer = csv.writer(csv_file, delimiter=',')
-        writer.writerow([filename])
+        writer.writerow([filename + '.csv'])
 
 def get_files_already_sorted():
     """
@@ -46,8 +47,19 @@ def get_files_already_sorted():
     return files_already_sorted
 
 def main():
-    files = get_files_already_sorted()
-    print(files)
+    sorted_files = get_files_already_sorted()
+    criteria = 'nasdaq_screener'
+    source_folder_file_path = 'C:/Users/tedst/Documents/Augsburg University Files/Programming Files/Bot Projects/Stock Data Web Scraper/Stock Spreadsheets'
+    record_files = moving_files.scan_folder(source_folder=source_folder_file_path, criteria=criteria)
+
+    sorted_files.sort()
+    record_files.sort()
+    if(sorted_files == record_files) or (len(record_files) == 0):
+        print('No new files')
+    else:
+        # Some sort of function to sort through the new files
+
+    #moving_files.move_files(record_files, source_folder_file_path, source_folder_file_path + '/Sorted Records')
         
         
 
