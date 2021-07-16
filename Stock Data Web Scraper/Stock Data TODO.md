@@ -40,6 +40,7 @@ TODO List
 		* Each "section" is 11 items
 		* Only add it into a contender section if it is on an uptick (for right now that means on a positive % change)
 		* Ends by Saving it into a csv file
+* Having a csv file that stores the filenames of files already sorted through ---------->
 * Main bot program --------------------------------------------------------------------->      
 * Trading logic ------------------------------------------------------------------------>      
 * Try and catch blocks for error management -------------------------------------------->      

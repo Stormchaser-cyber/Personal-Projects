@@ -8,6 +8,15 @@ from os.path import isfile
 import csv
 import moving_files
 
+# TODO -----------------------------------------------------------
+#   - process csv files that haven't been sorted yet --------->  |
+#   - move the files once they have been processed ----------->  |
+#   - make contenders csv file ------------------------------->  |
+#   - place contending stocks into contender csv file -------->  |
+#           - make sure not to overwrite any stocks ---------->  |
+#   - refactor and break down into distinct functions -------->  |
+# ----------------------------------------------------------------
+
 def update_sorted_spreadsheet_records(filename):
     """
     update_sorted_spreadsheet_records function updates the current file
