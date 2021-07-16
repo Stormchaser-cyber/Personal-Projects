@@ -22,7 +22,24 @@ TODO List
 * Having moving file scan the downloads folder and having it select all records that match our data ---------> done
 * Creating a move function that takes in a list of files to move -----------------------> done
 * Adding documentation for functions ---------------------------------------------------> done
-* Interpretting the downloaded csv stock file ------------------------------------------>      
+* Interpretting the downloaded csv stock file ------------------------------------------>
+	* Breaking up the file into different categories
+		* Symbols
+		* Name
+		* Last Sale
+		* Net Change
+		* % Change
+		* Market Cap
+		* Country
+		* IPO Year
+		* Volume
+		* Sector
+		* Industry
+	* Storing information?
+		* General List (for now)
+		* Each "section" is 11 items
+		* Only add it into a contender section if it is on an uptick (for right now that means on a positive % change)
+		* Ends by Saving it into a csv file
 * Main bot program --------------------------------------------------------------------->      
 * Trading logic ------------------------------------------------------------------------>      
 * Try and catch blocks for error management -------------------------------------------->      
