@@ -22,6 +22,8 @@ TODO List
 * Having moving file scan the downloads folder and having it select all records that match our data ---------> done
 * Creating a move function that takes in a list of files to move -----------------------> done
 * Adding documentation for functions ---------------------------------------------------> done
+* Get web scraper working again --------------------------------------------------------> done
+* Get web scraper to supress the warnings ----------------------------------------------> done
 * Interpretting the downloaded csv stock file ------------------------------------------>
 	* Breaking up the file into different categories
 		* Symbols
