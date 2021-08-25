@@ -24,7 +24,7 @@ TODO List
 * Adding documentation for functions ---------------------------------------------------> done
 * Get web scraper working again --------------------------------------------------------> done
 * Get web scraper to supress the warnings ----------------------------------------------> done
-* Interpretting the downloaded csv stock file ------------------------------------------>
+* Converting and cleaning information from the downloaded csv stock file --------------->
 	* Breaking up the file into different categories
 		* Symbols
 		* Name
@@ -37,11 +37,14 @@ TODO List
 		* Volume
 		* Sector
 		* Industry
-	* Storing information?
-		* General List (for now) -------> done
-		* Each "section" is 11 items
-		* Only add it into a contender section if it is on an uptick (for right now that means on a positive % change)
-		* Ends by Saving it into a csv file
+	* Saving it into a csv file with the format ('nasdaq_screener_DD_MM_YYYY__HH_MM_SS') ----->
+* Running analysis on all files for best stocks? ------------------------------------------------->
+	* 2 approaches
+		* Iterate through each file and keep the top 250 stocks with the best positive % change
+			* compare and find the top stocks and sort them based off of best % change over time
+		* Iterate through each file and keep track of all the percentages increased over a certain period of time
+			* recommend best stocks in terms of % change and when would be the best time to buy
+	* Save the recommendations into a text file
 * Having a csv file that stores the filenames of files already sorted through ---------->
 * Main bot program --------------------------------------------------------------------->      
 * Trading logic ------------------------------------------------------------------------>      
