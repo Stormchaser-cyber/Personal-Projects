@@ -96,7 +96,7 @@ def clean_file(filename):
         for item in lines_to_write:
             csv_writer.writerow(item)
             
-    time.sleep(0.33)
+    time.sleep(1)
     rename_file(filename)
 
 
@@ -104,7 +104,7 @@ def rename_file(file_name):
     file_path = 'C:/Users/tedst/Documents/Augsburg University Files/Programming Files/Bot Projects/Stock Data Web Scraper/Stock Spreadsheets/'
     destination_path = 'C:/Users/tedst/Documents/Augsburg University Files/Programming Files/Bot Projects/Stock Data Web Scraper/Stock Spreadsheets/Sorted Records/'
     current_time = datetime.datetime.now()
-    new_file_name = 'nasdaq_screener_%s_%s_%s__%s%s%s.csv' % (current_time.day, current_time.month, current_time.year, current_time.hour, current_time.minute, current_time.second) 
+    new_file_name = 'nasdaq_screener_%s_%s_%s__%s_%s_%s.csv' % (current_time.day, current_time.month, current_time.year, current_time.hour, current_time.minute, current_time.second) 
     os.rename(file_path + file_name, destination_path + new_file_name)
 
             
