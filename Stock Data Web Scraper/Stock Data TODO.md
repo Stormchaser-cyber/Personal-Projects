@@ -45,8 +45,7 @@ TODO List
 		* Iterate through each file and keep track of all the percentages increased over a certain period of time
 			* recommend best stocks in terms of % change and when would be the best time to buy
 	* Save the recommendations into a text file
-* Having a csv file that stores the filenames of files already sorted through ---------->
-* Main bot program --------------------------------------------------------------------->      
+* Main bot program ---------------------------------------------------------------------> done     
 * Trading logic ------------------------------------------------------------------------>      
 * Try and catch blocks for error management -------------------------------------------->      
 * Full implementation ------------------------------------------------------------------>      
