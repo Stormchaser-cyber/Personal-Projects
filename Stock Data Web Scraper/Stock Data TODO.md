@@ -24,7 +24,7 @@ TODO List
 * Adding documentation for functions ---------------------------------------------------> done
 * Get web scraper working again --------------------------------------------------------> done
 * Get web scraper to supress the warnings ----------------------------------------------> done
-* Converting and cleaning information from the downloaded csv stock file --------------->
+* Converting and cleaning information from the downloaded csv stock file ---------------> done
 	* Breaking up the file into different categories
 		* Symbols
 		* Name
@@ -37,7 +37,7 @@ TODO List
 		* Volume
 		* Sector
 		* Industry
-	* Saving it into a csv file with the format ('nasdaq_screener_DD_MM_YYYY__HH_MM_SS') ----->
+	* Saving it into a csv file with the format ('nasdaq_screener_DD_MM_YYYY__HH_MM_SS') -----> done
 * Running analysis on all files for best stocks? ------------------------------------------------->
 	* 2 approaches
 		* Iterate through each file and keep the top 250 stocks with the best positive % change
