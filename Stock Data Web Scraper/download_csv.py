@@ -30,6 +30,8 @@ def download_csv_from_url_by_xpath(url, xpath):
 
     browser.get(url) # looking up the URL of the website
 
+    time.sleep(10) # sleeping for 10 seconds once we get on the webpage so we have time for everything to load
+
     try:
         browser.find_element_by_xpath(xpath).click() # navigating through the xpath and clicking on the element
     except:
