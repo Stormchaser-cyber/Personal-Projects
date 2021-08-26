@@ -22,7 +22,7 @@ def save_day_statistics(program_start, program_end, num_of_files_downloaded, fil
     file.write('\nFiles that were downloaded and cleaned:')
 
     for item in files_downloaded:
-        file.write('\n' + item)
+        file.write('\n - ' + item)
     
     file.close()
 
@@ -36,7 +36,7 @@ def main():
     time_to_wait = int(60 * 3)
     number_of_files = 0
 
-    while current_time.hour < 16: #!= 20: # running the bot until 8pm
+    while current_time.hour < 17: #!= 20: # running the bot until 8pm
         download.main()
         number_of_files += 1
         time.sleep(time_to_wait)
