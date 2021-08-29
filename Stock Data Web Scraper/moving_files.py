@@ -29,6 +29,15 @@ def scan_folder(source_folder, criteria):
 
     return files_to_move
 
+def custom_scan_folder(source_folder, criteria, number_of_characters):
+    files_to_move = []
+    
+    for item in listdir(source_folder):
+        if item[0:number_of_characters] == criteria:
+            files_to_move.append(item)
+
+    return files_to_move
+
 def move_file(file_name, source_folder, destination_folder):
     """
     move_file function moves a given file where a file's name, type, source folder, and destination folder are specified
