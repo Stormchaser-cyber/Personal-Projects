@@ -36,7 +36,7 @@ def main():
     time_to_wait = int(60 * 25) # waiting 25 minutes before grabbing more data
     number_of_files = 0
 
-    while current_time.hour < 12: # running the bot until noon
+    while current_time.hour < 14: # running the bot until 2pm
         download.main()
         number_of_files += 1
         time.sleep(time_to_wait)
