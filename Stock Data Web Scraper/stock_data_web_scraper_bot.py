@@ -74,7 +74,7 @@ def run_main_bot():
     time_to_wait = int(60 * 25) # waiting 25 minutes before grabbing more data
     number_of_files = 0
 
-    while current_time.hour < 17: # running the bot until 5pm
+    while current_time.hour < 13: # running the bot until 3pm
         download.main()
         number_of_files += 1
         time.sleep(time_to_wait)
@@ -97,7 +97,8 @@ def run_main_bot():
     save_day_statistics(program_start, program_end, number_of_files, files_moved)
 
 def main():
-    run_one_test()
+    #run_one_test()
+    run_main_bot()
     
     
 
