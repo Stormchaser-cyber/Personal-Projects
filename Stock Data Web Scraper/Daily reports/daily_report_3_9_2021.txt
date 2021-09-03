@@ -15,3 +15,8 @@ New Files that were downloaded and cleaned:
 
 New Files that were downloaded and cleaned:
  - nasdaq_screener_1630706964535.csv
+
+New Files that were downloaded and cleaned:
+
+New Files that were downloaded and cleaned:
+ - nasdaq_screener_1630708136248.csv
