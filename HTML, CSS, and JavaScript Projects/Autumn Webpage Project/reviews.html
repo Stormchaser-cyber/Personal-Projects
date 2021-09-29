@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<html>
+<head>
+    <title> Website Reviews </title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Linking this second stylesheet just so I can use the stars for ratings,
+    please don't hate me for doubling up style sheets on this html Erik :( -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body class="background">
+    <header id="header-background">
+        <!-- Navigation bar -->
+        <div class="nav">
+            <a href="index.html">Home</a>
+            <a href="leaves.html">Table of Leaves</a>
+            <a href="pictures.html">Pictures and Video</a>
+            <a class="active" href="reviews.html">Reviews</a>
+
+        </div>
+
+        <!-- Webpage title and information -->
+        <h1 id="header-title">Webpage reviews!</h1>
+        <p id="header-information"> The review section about this webpage!</p>
+    </header>
+    <div id="container">
+        <!-- First Review -->
+        <review1 class="dark-grey-background">
+            <h2 style="padding-left: 0px;">Leroi Kuhn (LeriKuhn@hotmail.com)</h2>
+            <p style="padding-left: 0px;">
+                Personally I really appreciated the title page however, it was quite
+                apparent that the creator of this webpage started off strong...but then ran
+                out of ideas for the following 2 pages of the 3 html page requirement.
+            </p>
+
+            <!-- Making sure all stars are on the same level -->
+            <reposition-stars>
+                <!-- Stars Section -->
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star "></span>
+                <span class="fa fa-star "></span>
+            </reposition-stars>
+        </review1>
+
+        <!-- Second Review -->
+        <review2 class="light-orange-background">
+            <h2 style="color: black; padding-left: 0px;">Bede Križman (Križžy274@not_a_russian.USSR)</h2>
+            <p style="color: black; padding-left: 0px;">
+                Привет, брат! Я очень рада найти такую ​​замечательную
+                веб-страницу, которая разделяет мою любовь к осени.
+                Мои сверстники здесь не согласны со мной, но вы, американцы, согласны!
+            </p>
+
+            <!-- Making sure all stars are on the same level -->
+            <reposition-stars>
+                <!-- Stars Section -->
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+            </reposition-stars>
+        </review2>
+
+        <!-- Third Review -->
+        <review3 class="dark-grey-background">
+            <h2 style="padding-left: 0px;"> Juan Matthews (MattJuan@mail.google.notcopyright.com)</h2>
+            <p style="padding-left: 0px;">
+                Honestly as a web designer this isn't that bad of a website. With
+                that said, it has been around for a little while and the cyber security
+                on this site wasn't covered in the class that this was done for so that
+                is kind of non-existent. But it's a good start (that's what I tell myself).
+            </p>
+
+            <!-- Stars Section -->
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star "></span>
+            <span class="fa fa-star "></span>
+            <span class="fa fa-star "></span>
+        </review3>
+    </div>
+</body>
+</html>
