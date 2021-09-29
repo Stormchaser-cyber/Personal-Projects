@@ -4,7 +4,7 @@
 #
 
 # Byte-compiled
-__pycahce__/
+__pycache__/
 
 # Any jar files
 *.jar
