@@ -36,7 +36,7 @@ def update_sorted_spreadsheet_records(filename):
 
 def clean_file(filename):
 
-    with open('C:/Users/tedst/Documents/Augsburg University Files/Programming Files/Bot Projects/Stock Data Web Scraper/Stock Spreadsheets/' + filename,'r') as input_file:
+    with open('C:/Users/tedst/Documents/Augsburg University Files/Programming Files/Personal-Projects/Python Projects/Stock Data Web Scraper/Stock Spreadsheets/' + filename,'r') as input_file:
         csv_reader = csv.reader(input_file, delimiter=',')
         line_count = 0
 
@@ -64,7 +64,7 @@ def clean_file(filename):
                 lines_to_write.append(item)
             line_count += 1
 
-    with open('C:/Users/tedst/Documents/Augsburg University Files/Programming Files/Bot Projects/Stock Data Web Scraper/Stock Spreadsheets/' + filename,'w', newline='') as write_file:
+    with open('C:/Users/tedst/Documents/Augsburg University Files/Programming Files/Personal-Projects/Python Projects/Stock Data Web Scraper/Stock Spreadsheets/' + filename,'w', newline='') as write_file:
         csv_writer = csv.writer(write_file, delimiter=',')
 
         csv_writer.writerow(['Symbol', 'Name', 'Last Sale', 'Net Change_v2', '% Change', 'Market Cap', 'Country',
@@ -77,8 +77,9 @@ def clean_file(filename):
 
 
 def rename_file(file_name):
-    file_path = 'C:/Users/tedst/Documents/Augsburg University Files/Programming Files/Bot Projects/Stock Data Web Scraper/Stock Spreadsheets/'
-    destination_path = 'C:/Users/tedst/Documents/Augsburg University Files/Programming Files/Bot Projects/Stock Data Web Scraper/Stock Spreadsheets/Sorted Records/'
+    
+    file_path = 'C:/Users/tedst/Documents/Augsburg University Files/Programming Files/Personal-Projects/Python Projects/Stock Data Web Scraper/Stock Spreadsheets/'
+    destination_path = 'C:/Users/tedst/Documents/Augsburg University Files/Programming Files/Personal-Projects/Python Projects/Stock Data Web Scraper/Stock Spreadsheets/Sorted Records/'
     current_time = datetime.datetime.now()
     new_file_name = 'nasdaq_screener_%s_%s_%s__%s_%s_%s.csv' % (current_time.day, current_time.month, current_time.year, current_time.hour, current_time.minute, current_time.second) 
     os.rename(file_path + file_name, destination_path + new_file_name)
@@ -88,7 +89,7 @@ def rename_file(file_name):
 
 def main():
     criteria = 'nasdaq_screener'
-    source_folder_file_path = 'C:/Users/tedst/Documents/Augsburg University Files/Programming Files/Bot Projects/Stock Data Web Scraper/Stock Spreadsheets'
+    source_folder_file_path = 'C:/Users/tedst/Documents/Augsburg University Files/Programming Files/Personal-Projects/Python Projects/Stock Data Web Scraper/Stock Spreadsheets'
     record_files = moving_files.scan_folder(source_folder=source_folder_file_path, criteria=criteria)
 
     record_files.sort()

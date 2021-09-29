@@ -82,7 +82,7 @@ def main():
     criteria = 'nasdaq_screener'
     file_name = 'nasdaq_screener_1626390668384.csv'
     source_folder = 'C:/Users/tedst/Downloads'
-    destination_folder = 'C:/Users/tedst/Documents/Augsburg University Files/Programming Files/Bot Projects/Stock Data Web Scraper/Stock Spreadsheets'
+    destination_folder = 'C:/Users/tedst/Documents/Augsburg University Files/Programming Files/Personal-Projects/Python Projects/Stock Data Web Scraper/Stock Spreadsheets'
 
     #move_file(file_name=file_name, file_type=file_type, source_folder=source_folder, destination_folder=destination_folder)
 
