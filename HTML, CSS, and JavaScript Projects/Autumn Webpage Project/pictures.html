@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<html>
+<head>
+    <title> Pictures and videos </title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="background">
+    <header id="header-background">
+        <!-- Navigation bar -->
+        <div class="nav">
+            <a href="index.html">Home</a>
+            <a href="leaves.html">Table of Leaves</a>
+            <a class="active" href="pictures.html">Pictures and Video</a>
+            <a href="reviews.html">Reviews</a>
+        </div>
+
+        <!-- Webpage title and information -->
+        <h1 id="header-title">Pictures and Videos!</h1>
+        <p id="header-information"> A collection of Pictures and videos!</p>
+    </header>
+
+    <!-- General Flexbox for picture and video layout -->
+    <div id="container">
+        <img style="width: 507; height: 675px; padding-left: 25px; padding-top: 25px;" src="images/Myself.jpeg" alt="Myself">
+        <!-- Sub-flexbox for placing one image underneath another image -->
+        <container1>
+            <img id="top-item" style="width: 409; height: 268px;" src="images/Mj_and_I.jpeg" alt="MJ and I">
+            <img style="width: 558; height: 367px; flex: 0 1 50%;"src="images/Rowboat.jpeg" alt="Rowboat" id="bottom-item">
+        </container1>
+        <!-- Placing the video -->
+        <video style="padding-top: 25px;" width="360" height="640" controls muted autoplay>
+            <source  src="videos/sparkler.mov"></soruce>
+        </video>
+    </div>
+</body>
+</html>
