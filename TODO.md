@@ -2,8 +2,11 @@
 
 Here are some ideas for python bot programs
 
-* Web Scraper for Stock data - A program that scrapes web data for stock market data to use for the stock exachange
+* DONE - Web Scraper for Stock data - A program that scrapes web data for stock market data to use for the stock exachange
   bot. Should save information into either a spreadsheet or a csv file. (Runs during the market time 8am - 5pm).
+
+* Cartoonizer Bot - A program that takes in a jpeg that has regular people and transforms it into a cartoon style. It should
+  then save the result into another jpeg file with specific features to be determined.
 
 * Stock Exchange Bot - An automatic program that runs in the background that plays a stock trading game (for now),
   it operates by having an initial sample amount of cash, taking in the stock prices every 30 minutes, compares it
