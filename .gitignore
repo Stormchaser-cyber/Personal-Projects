@@ -14,3 +14,10 @@ __pycache__/
 
 #intellij files
 *.idea
+
+# Sample input files in various MACCS formats
+*.2Hz
+*.2hz
+*.8Hz
+*.8hz
+*.s2
