@@ -10,6 +10,10 @@
 ----
 * Stock Data Web Scraper: Bot project that downloads a stock csv file, reflects upon previous data, runs simulations
 and comes up with predictions for the best stock options
+* Maccs Files: Augsburg University's Physics department's project where I was tasked to create python3 scripts to
+act as graphing tools for Physicists to examine and find events that occured in the Earth's electromagnetic fields
+* Python Practice Question Programs: This directory contains files that I have developed as I practice for internships,
+interviews and potential job recruitment
 
 ### Who do I contact? ###
 ----
