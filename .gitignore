@@ -1,6 +1,8 @@
 # .gitignore for Bots project code.
 #
 # 2021 July -- Created -- Ted Strombeck
+# 
+# Version 1.1
 #
 
 # Byte-compiled
@@ -9,8 +11,19 @@ __pycache__/
 # Any jar files
 *.jar
 
-#macOS windowing placement information
+# macOS windowing placement information
 *.DS_Store
 
-#intellij files
+# intellij files
 *.idea
+
+# vs files
+*.vs/
+
+
+# Sample input files in various MACCS formats
+*.2Hz
+*.2hz
+*.8Hz
+*.8hz
+*.s2
