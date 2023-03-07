@@ -12,14 +12,18 @@ import moving_files
 import datetime
 import time
 
-# TODO -----------------------------------------------------------
-#   - process csv files that haven't been sorted yet --------->  |
-#   - move the files once they have been processed ----------->  |
-#   - make contenders csv file ------------------------------->  |
-#   - place contending stocks into contender csv file -------->  |
-#           - make sure not to overwrite any stocks ---------->  |
-#   - refactor and break down into distinct functions -------->  |
-# ----------------------------------------------------------------
+# TODO ----------------------------------------------------------------------
+#   - process csv files that haven't been sorted yet --------->     Done    |
+#   - move the files once they have been processed ----------->     Done    |
+#   - create functionality to generate reports for ----------->  Working on |
+#     individual stocks based on newest and oldest                          |
+#     data that we have. (Searchable by ticker)                             |
+#   - revise clean_file logic -------------------------------->             |
+#   - make contenders csv file ------------------------------->             |
+#   - place contending stocks into contender csv file -------->             |
+#           - make sure not to overwrite any stocks ---------->             |
+#   - refactor and break down into distinct functions -------->             |
+# ---------------------------------------------------------------------------
 
 def update_sorted_spreadsheet_records(filename):
     """
@@ -98,6 +102,31 @@ def rename_file(file_name):
     current_time = datetime.datetime.now()
     new_file_name = 'nasdaq_screener_%s_%s_%s__%s_%s_%s.csv' % (current_time.day, current_time.month, current_time.year, current_time.hour, current_time.minute, current_time.second) 
     os.rename(file_path + file_name, destination_path + new_file_name)
+
+def generate_candidate_report(stock_ticker):
+    """
+    generate_candidate_report function creates a text file report for a particular stock where it returns key information about the stock
+
+    Parameters
+    ----------
+    String     
+        stock_ticker: the name of the stock ticker to search for
+    """
+
+    # find most recent file
+
+    # search to see if stock ticker exists in most recent file
+
+    # grab most recent data
+
+    # search for oldest file
+
+    # search for ticker in oldest file
+
+    # calculate key stats to log
+
+    # generate file based on key stats
+
 
 def main():
     criteria = 'nasdaq_screener'
