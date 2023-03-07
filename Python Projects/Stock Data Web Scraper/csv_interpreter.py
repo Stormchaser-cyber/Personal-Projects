@@ -1,6 +1,7 @@
 # csv_interpreter.py file
 #
-# July 2021 -- Created -- Ted Strombeck
+# Created -- Ted Strombeck -- July 2021
+# Version 1.0
 #
 
 import os
@@ -35,7 +36,14 @@ def update_sorted_spreadsheet_records(filename):
         writer.writerow([filename + '.csv'])
 
 def clean_file(filename):
+    """
+    clean_file function cleans the specified file by (currently WIP)
 
+    Parameters
+    ----------
+    String
+        filename: the string name of the file to be added to the csv file
+    """
     with open('C:/Users/tedst/Documents/Augsburg University Files/Programming Files/Personal-Projects/Python Projects/Stock Data Web Scraper/Stock Spreadsheets/' + filename,'r') as input_file:
         csv_reader = csv.reader(input_file, delimiter=',')
         line_count = 0
@@ -77,15 +85,19 @@ def clean_file(filename):
 
 
 def rename_file(file_name):
-    
+    """
+    rename_file function renames the file to nasdaq_screener____ with trailing information for the date and time that it was processed
+
+    Parameters
+    ----------
+    String
+        file_name: the name of the file to be renamed
+    """
     file_path = 'C:/Users/tedst/Documents/Augsburg University Files/Programming Files/Personal-Projects/Python Projects/Stock Data Web Scraper/Stock Spreadsheets/'
     destination_path = 'C:/Users/tedst/Documents/Augsburg University Files/Programming Files/Personal-Projects/Python Projects/Stock Data Web Scraper/Stock Spreadsheets/Sorted Records/'
     current_time = datetime.datetime.now()
     new_file_name = 'nasdaq_screener_%s_%s_%s__%s_%s_%s.csv' % (current_time.day, current_time.month, current_time.year, current_time.hour, current_time.minute, current_time.second) 
     os.rename(file_path + file_name, destination_path + new_file_name)
-
-            
-    
 
 def main():
     criteria = 'nasdaq_screener'
