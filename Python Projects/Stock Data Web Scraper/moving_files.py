@@ -1,6 +1,7 @@
 # moving_downloaded_file.py file
 #
-# July 2021 -- Created -- Ted Strombeck
+# Created -- Ted Strombeck -- July 2021
+# Version 1.0
 #
 import shutil
 from os import listdir
@@ -30,6 +31,17 @@ def scan_folder(source_folder, criteria):
     return files_to_move
 
 def custom_scan_folder(source_folder, criteria, number_of_characters):
+    """
+    custom_scan_folder function moves any number of files to a new location if the first certain amount of characters matches the criteria
+
+    Parameters
+    ----------
+    String 
+        source_folder: filepath of the folder to search
+        criteria: the string to compare the filename without
+    Int
+        number_of_characters: the number of characters in the criteria
+    """
     files_to_move = []
     
     for item in listdir(source_folder):
@@ -83,8 +95,6 @@ def main():
     file_name = 'nasdaq_screener_1626390668384.csv'
     source_folder = 'C:/Users/tedst/Downloads'
     destination_folder = 'C:/Users/tedst/Documents/Augsburg University Files/Programming Files/Personal-Projects/Python Projects/Stock Data Web Scraper/Stock Spreadsheets'
-
-    #move_file(file_name=file_name, file_type=file_type, source_folder=source_folder, destination_folder=destination_folder)
 
     items_to_move = scan_folder(source_folder, criteria)
 

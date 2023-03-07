@@ -1,4 +1,8 @@
 # download_csv.py
+#
+# Created -- Ted Strombeck -- July 2021
+# Version 1.0
+# 
 
 # URL: "https://www.nasdaq.com/market-activity/stocks/screener"
 # ID: "nasdaq-screener__form-button--download ns-download-1")
@@ -22,9 +26,9 @@ def download_csv_from_url_by_xpath(url, xpath):
     ### Works! Just takes a little bit of awhile, not too sure why ###
     options = webdriver.ChromeOptions()
     
-    #options.add_argument('--headless') #Not showing the webpage pop up
+    #options.add_argument('--headless') # Not showing the webpage pop up
     
-    options.add_argument('--log-level=3') #Only showing logs if they are fatal
+    options.add_argument('--log-level=3') # Only showing logs if they are fatal
     
     browser = webdriver.Chrome(options=options) # Creating a chrome browser object
 
@@ -45,8 +49,6 @@ def main():
     """
     Main function to control and run the functions as you initially would in main
     """
-
-    
 
     download_csv_from_url_by_xpath(url="https://www.nasdaq.com/market-activity/stocks/screener",
                                    xpath='/html/body/div[2]/div/main/div[2]/article/div[3]/div[1]/div/div/div[3]/div[2]/div[2]/div/button')
