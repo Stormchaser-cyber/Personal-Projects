@@ -114,7 +114,33 @@ def generate_candidate_report(stock_ticker):
         stock_ticker: the name of the stock ticker to search for
     """
 
-    # find most recent file
+    # find most recent file <-- break down into own function
+    max_date = [None, None, -1, -1, -1, None, -1, -1, -1]
+
+    list_of_files = moving_files.scan_folder(source_folder='C:/Users/tedst/source/repos/Personal-Projects/Python Projects/Stock Data Web Scraper/Stock Spreadsheets/Sorted Records', criteria='nasdaq_screener')#glob.glob('C:/Users/tedst/source/repos/Personal-Projects/Python Projects/Stock Data Web Scraper/Stock Spreadsheets/Sorted Records/*.csv')
+    
+    for item in list_of_files:
+        
+        result = item.split("_")
+        result[4] = int(result[4])
+        result[3] = int(result[3])
+        result[2] = int(result[2])
+        result[6] = int(result[6])
+        result[7] = int(result[7])
+        result[-1] = int(result[-1].split('.')[0])
+
+
+        if result[4] >= max_date[4]:
+            if result[3] >= max_date[3]:
+                if result[2] >= max_date[2]:
+                    if result[6] >= max_date[6]:
+                        if result[7] >= max_date[7]:
+                            if result[8] > max_date[8]:
+                                max_date = result
+
+    Latest_file_name = '%s_%s_%s_%s_%s__%s_%s_%s.csv' % (str(max_date[0]), str(max_date[1]), str(max_date[2]), str(max_date[3]), str(max_date[4]), str(max_date[6]), str(max_date[7]), str(max_date[8]) )
+
+    print("Lastest file: " + Latest_file_name)
 
     # search to see if stock ticker exists in most recent file
 
