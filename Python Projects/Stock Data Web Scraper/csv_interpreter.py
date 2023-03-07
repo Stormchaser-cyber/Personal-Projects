@@ -18,6 +18,7 @@ import time
 #   - create functionality to generate reports for ----------->  Working on |
 #     individual stocks based on newest and oldest                          |
 #     data that we have. (Searchable by ticker)                             |
+#   - Fix all filepaths in project --------------------------->             |
 #   - revise clean_file logic -------------------------------->             |
 #   - make contenders csv file ------------------------------->             |
 #   - place contending stocks into contender csv file -------->             |
