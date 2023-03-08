@@ -116,6 +116,7 @@ def generate_candidate_report(stock_ticker):
 
     # find most recent file <-- break down into own function
     max_date = [None, None, -1, -1, -1, None, -1, -1, -1]
+    current_Data = None
 
     list_of_files = moving_files.scan_folder(source_folder='C:/Users/tedst/source/repos/Personal-Projects/Python Projects/Stock Data Web Scraper/Stock Spreadsheets/Sorted Records', criteria='nasdaq_screener')#glob.glob('C:/Users/tedst/source/repos/Personal-Projects/Python Projects/Stock Data Web Scraper/Stock Spreadsheets/Sorted Records/*.csv')
     
@@ -152,6 +153,11 @@ def generate_candidate_report(stock_ticker):
             return
 
     # grab most recent data
+        for row in contents_array:
+            if row != contents_array[0]:
+                items = row.split(',')
+                if items[0] == stock_ticker:
+                    current_Data = items
 
     # search for oldest file
 
