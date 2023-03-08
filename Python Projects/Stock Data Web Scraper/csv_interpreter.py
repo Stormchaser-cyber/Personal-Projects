@@ -143,6 +143,13 @@ def generate_candidate_report(stock_ticker):
     print("Lastest file: " + Latest_file_name)
 
     # search to see if stock ticker exists in most recent file
+    with open('C:/Users/tedst/source/repos/Personal-Projects/Python Projects/Stock Data Web Scraper/Stock Spreadsheets/Sorted Records/' + Latest_file_name) as latest_file:
+        contents_array = latest_file.readlines()
+        if stock_ticker in str(contents_array):
+            print("Ticker is in file")
+        else:
+            print("Ticker can't be found")
+            return
 
     # grab most recent data
 
