@@ -6,7 +6,7 @@
 # 
 
 # URL: "https://www.nasdaq.com/market-activity/stocks/screener"
-# ID: "nasdaq-screener__form-button--download ns-download-1")
+# ID: "nasdaq-screener__form-button--download ns-download-1"
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
