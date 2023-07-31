@@ -1,7 +1,8 @@
 # stock_data_web_scraper_bot
 #
 # Created -- Ted Strombeck -- August 2021
-# Version 1.0
+# Last Updated -- July 31, 2023
+# Version 1.0.1
 #
 
 import csv_interpreter as interpreter
