@@ -1,7 +1,8 @@
 # download_csv.py
 #
-# Created -- Ted Strombeck -- July 2021
-# Version 1.0
+# Created -- Ted Strombeck -- July 2021 
+# Last Updated -- July 31, 2023
+# Version 1.0.1
 # 
 
 # URL: "https://www.nasdaq.com/market-activity/stocks/screener"
@@ -37,9 +38,13 @@ def download_csv_from_url_by_xpath(url, xpath):
     time.sleep(10) # sleeping for 10 seconds once we get on the webpage so we have time for everything to load
 
     try:
-        browser.find_element_by_xpath(xpath).click() # navigating through the xpath and clicking on the element
-    except:
-        print('Didn\'t work')
+        browser.find_element("xpath", xpath).click() # navigating through the xpath and clicking on the element
+    except AttributeError as ex:
+        print("Attribute Error: ", end="")
+        print(ex)
+    except Exception as ex:
+        print('Exception caught: ',end='')
+        print(ex)
 
     time.sleep(5) # sleeping for 5 seconds to ensure that the download is able to go through
 
@@ -51,7 +56,7 @@ def main():
     """
 
     download_csv_from_url_by_xpath(url="https://www.nasdaq.com/market-activity/stocks/screener",
-                                   xpath='/html/body/div[2]/div/main/div[2]/article/div[3]/div[1]/div/div/div[3]/div[2]/div[2]/div/button')
+                                   xpath='/html/body/div[3]/div/main/div[2]/article/div[3]/div[1]/div/div/div[3]/div[2]/div[2]/div/button')
     
     
 
