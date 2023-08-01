@@ -72,7 +72,7 @@ def run_one_test():
     current_time = datetime.datetime.now()
 
     moving_files.main()
-    files_moved = moving_files.scan_folder('C:/Users/tedst/Documents/Augsburg University Files/Programming Files/Personal-Projects/Python Projects/Stock Data Web Scraper/Stock Spreadsheets',
+    files_moved = moving_files.scan_folder('C:/Users/tedst/source/repos/Personal-Projects/Python Projects/Stock Data Web Scraper/Stock Spreadsheets',
                              criteria = 'nasdaq_screener')
         
     interpreter.main()
@@ -105,7 +105,7 @@ def run_main_bot():
         current_time = datetime.datetime.now()
 
     moving_files.main()
-    files_moved = moving_files.scan_folder('C:/Users/tedst/Documents/Augsburg University Files/Programming Files/Personal-Projects/Python Projects/Stock Data Web Scraper/Stock Spreadsheets',
+    files_moved = moving_files.scan_folder('C:/Users/tedst/source/repos/Personal-Projects/Python Projects/Stock Data Web Scraper/Stock Spreadsheets',
                              criteria = 'nasdaq_screener')
         
     interpreter.main()
