@@ -1,0 +1,52 @@
+/** Binary node class for use with any type of binary tree.
+ */
+public class BinaryNode<T> {
+
+    /** Data to be stored in node. */
+    private T data = null;
+    /** Height of node within tree. Height is longest simple path to leaf. */
+    private Integer height = null;
+    /** Depth of node within tree. Depth is length of path from root to node. */
+    private Integer depth = null;
+
+    /** Right child of Node. */
+    private BinaryNode<T> right = null;
+    /** Left child of Node. */
+    private BinaryNode<T> left = null;
+    /** Parent of Node */
+    private BinaryNode<T> parent = null;
+
+    /** Constructor
+     @param val Data to be stored in node.
+     */
+    public BinaryNode(T val) {
+        data = val;
+        // use default for all other values
+    }
+
+    /** Default constructor -- creating null data.
+     */
+    public BinaryNode() {
+        this(null);
+    }
+
+    // Getters and setters are named such that they do not need Javadocs
+
+    // Getters for "pointers"
+    public BinaryNode<T> right() { return right; }
+    public BinaryNode<T> left() { return left; }
+    public BinaryNode<T> parent() { return parent; }
+    // Setters for "pointers"
+    public void right(BinaryNode<T> n) { right = n; }
+    public void left(BinaryNode<T> n) { left = n; }
+    public void parent(BinaryNode<T> n) { parent = n; }
+
+    // Getters and Setters for data, height, depth.
+    public T data() { return data; }
+    public void data(T d) { data = d; }
+    public Integer height() { return height; }
+    public void height(Integer h) { height = h; }
+    public Integer depth() { return depth; }
+    public void depth(Integer d) { depth = d; }
+
+} // end class Node

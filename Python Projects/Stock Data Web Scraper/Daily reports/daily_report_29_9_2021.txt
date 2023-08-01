@@ -1,0 +1,8 @@
+Daily report for 29_9_2021
+Started at: 2021-09-29 17:16:20.074219
+Finished at: 2021-09-29 17:16:47.732991
+Downloaded: 1 files
+
+Files that were downloaded and cleaned:
+ - nasdaq_screener_1632953632155.csv
+ - nasdaq_screener_1632953799015.csv

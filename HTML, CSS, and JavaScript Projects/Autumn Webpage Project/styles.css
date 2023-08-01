@@ -1,0 +1,216 @@
+/* Positioning Section */
+main {
+    margin-top: 25px;
+    margin-left: 25px;
+    padding-right: 0px;
+    flex: 0 1 33%;
+}
+
+form {
+    margin-right: 25px;
+    margin-top: 25px;
+    padding-right: 25px;
+    flex: 0 1 23%;
+}
+
+label {
+    display: inline-block;
+    width: 150px;
+    text-align: right;
+    padding-left: 25px;
+    display: inline-block;
+    text-align: right;
+    font-size: 20px;
+}
+
+input { margin-bottom: 10px; }
+/* End Positioning Section */
+
+/* Table formatting section */
+table {
+    border: 1px solid black;
+    border-collapse: collapse;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    color: white;
+    transform: translate(-50%, 2.5%)
+
+}
+
+th, td { padding: 10px; }
+/* End Table Formatting Section */
+
+/* Images formatting */
+container1 {
+    display: flex;
+    max-width: 560;
+    flex-flow: column;
+}
+
+#top-item {
+    padding-left: 250px; /* Padding here is the bottom item's padding + 50px more */
+    padding-right: 250px; /* Padding here is the bottom item's padding + 50px more */
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+#bottom-item {
+    padding-left: 200px;
+    padding-right: 200px;
+}
+
+/* End Images formatting */
+
+/* Text Formatting Section */
+h1 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    color: white;
+}
+
+h2 {
+    padding-left: 20px;
+    color: white;
+}
+
+p {
+    padding-left: 20px ;
+    color: white;
+    font-size: 20px
+}
+
+body { margin: 0 auto; }
+
+#container {
+    display: flex;
+    flex-direction: row;
+}
+/* End Text Formatting Section */
+
+/* Review Section */
+review1 {
+    margin-top: 100px;
+    margin-left: 25px;
+    margin-right: 25px;
+    flex: 0 1 33%;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+review2 {
+    margin-top: 100px;
+    margin-left: 25px;
+    margin-right: 25px;
+    flex: 0 1 33%;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+review3 {
+    margin-top: 100px;
+    margin-left: 25px;
+    margin-right: 25px;
+    flex: 0 1 33%;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-bottom: 25px;
+}
+
+reposition-stars {
+    position: relative;
+    top: 18%;
+    left: 0%;
+    color: white;
+    transform: translate(0%, -50%)
+}
+
+.checked { color: yellow; }
+/* End Review Section */
+
+/* Youtube video formatting */
+youtube-video {
+    margin-top: 25px;
+    margin-left: 50px;
+    flex: 0 0 40%;
+}
+/* End Youtube video formatting */
+
+/* Header Section */
+#header-background {
+    width: 100%;
+    height: 400px;
+    box-shadow: 0 0 8px 8px white inset;
+    opacity: 0.8;
+    background:url("https://cdn.mos.cms.futurecdn.net/Nxz3xSGwyGMaziCwiAC5WW-1200-80.jpg")
+
+}
+
+#header-title {
+    position: relative;
+    text-align: center;
+    font-size: 100px;
+    top: 50%;
+    left: 50%;
+    color: white;
+    transform: translate(-50%, -50%)
+}
+
+#header-information {
+    position: relative;
+    text-align: center;
+    font-size: 20px;
+    top: 45%;
+    left: 50%;
+    color: white;
+    transform: translate(-50%, -50%)
+}
+/* End Header Section */
+
+/* Poem Section */
+#poem-author {
+    padding-right: 250px;
+    text-align: right;
+    font-size: 18px
+}
+
+#poem-title { color: white; }
+/* End Poem Section */
+
+/* Background Formatting Section */
+.background {
+    background-image: url("https://www.dontwasteyourmoney.com/wp-content/uploads/2017/10/77393723_fall-leaves.jpg");
+    background-size: cover;
+    opacity: 1;
+}
+
+.dark-grey-background { background-color: #6D6665; }
+
+.light-orange-background { background-color: #F08B2E; }
+/* End Background Formatting Section */
+
+/* Nav bar Section */
+.nav {
+    background: #333;
+    overflow: hidden;
+}
+
+.nav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.nav a:hover {
+    background: #ddd;
+    color: black;
+}
+
+.nav a.active {
+    background-color: #F08B2E;
+    color: white;
+}
+/* End Nav bar Section */

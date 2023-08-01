@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<html>
+<head>
+    <link rel="stylesheet" href="styles.css">
+    <title>Project One: An Autumn Website - Ted Strombeck</title>
+    <meta name="description" content="A simple website to welcome fall">
+    <meta name="author" content="Ted Strombeck">
+</head>
+
+<body class="background">
+    <!-- Fancy header with an image -->
+    <header id="header-background">
+        <!-- Navigation bar -->
+        <div class="nav">
+            <a class="active" href="#header-title">Home</a>
+            <a href="leaves.html">Table of Leaves</a>
+            <a href="pictures.html">Pictures and Video</a>
+            <a href="reviews.html">Reviews</a>
+        </div>
+
+        <!-- Webpage title and information -->
+        <h1 id="header-title">Autumn Falls</h1>
+        <p id="header-information"> a webpage about anything and everything autumn!</p>
+    </header>
+
+    <!-- Flexbox layout -->
+    <div id="container">
+        <!-- Shakespeare Poem about Autumn -->
+        <main class="dark-grey-background">
+            <h2 id="poem-title">
+                Sonnet 73: That time of year thou mayst in me behold
+            </h2>
+            <p style="text-align: left">
+                That time of year thou mayst in me behold<br>
+                When yellow leaves, or none, or few, do hang <br>
+                Upon those boughs which shake against the cold, <br>
+                Bare ruin'd choirs, where late the sweet birds sang. <br>
+                In me thou see'st the twilight of such day <br>
+                As after sunset fadeth in the west, <br><br>
+
+                Which by and by black night doth take away, <br>
+                Death's second self, that seals up all in rest. <br>
+                In me thou see'st the glowing of such fire <br>
+                That on the ashes of his youth doth lie, <br>
+                As the death-bed whereon it must expire, <br>
+                Consum'd with that which it was nourish'd by. <br>
+                This thou perceiv'st, which makes thy love more strong, <br>
+                To love that well which thou must leave ere long.
+            </p>
+            <p id="poem-author"> by William Shakespeare</p>
+        </main>
+
+        <!-- Youtube video of a song about Autumn -->
+        <youtube-video>
+            <iframe style="opacity:1" width="700" height="475" src="https://www.youtube.com/embed/xXBNlApwh0c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </youtube-video>
+
+        <!-- Email subscription form -->
+        <form action="https://example.com" method="POST" class="light-orange-background">
+            <h2 style="color: black">
+                Email Subscription form
+            </h2>
+            <p style="color: black">
+                If you would like to receive email updates about all things autumn please
+                put your email and information in the boxes below and click submit!
+            </p>
+            <label for="first">First Name:</label>
+            <input type="text" name="first" id="first">
+            <br><label for="last"> Last Name:</label>
+            <input type="text" name="last" id="last">
+            <br><label for="email">Email Address:</label>
+            <input type="text" name="email" id="email">
+            <br><label for="location">Home state:</label>
+            <input type="text" name="location" id="location">
+            <input style="margin-left: 298px;" type="submit">
+        </form>
+    </div>
+</body>
+</html>
