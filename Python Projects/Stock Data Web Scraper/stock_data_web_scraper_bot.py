@@ -1,7 +1,8 @@
 # stock_data_web_scraper_bot
 #
 # Created -- Ted Strombeck -- August 2021
-# Version 1.0
+# Last Updated -- July 31, 2023
+# Version 1.0.1
 #
 
 import csv_interpreter as interpreter
@@ -29,11 +30,11 @@ def save_day_statistics(program_start, program_end, num_of_files_downloaded, fil
     date = str(program_end.day) + '_' + str(program_end.month) + '_' + str(program_end.year)
     file_name = 'daily_report_' + date + '.txt'
     
-    daily_report_items = moving_files.custom_scan_folder('C:/Users/tedst/Documents/Augsburg University Files/Programming Files/Personal-Projects/Python Projects/Stock Data Web Scraper/Daily reports',
+    daily_report_items = moving_files.custom_scan_folder('C:/Users/tedst/source/repos/Personal-Projects/Python Projects/Stock Data Web Scraper/Daily reports',
                                                   criteria = 'daily_report', number_of_characters = 12)
 
     if file_name in daily_report_items:
-        file = open('C:/Users/tedst/Documents/Augsburg University Files/Programming Files/Personal-Projects/Python Projects/Stock Data Web Scraper/Daily reports/' + file_name, "a")
+        file = open('C:/Users/tedst/source/repos/Personal-Projects/Python Projects/Stock Data Web Scraper/Daily reports/' + file_name, "a")
         file.write('\n\nNew Files that were downloaded and cleaned:')
 
         for item in files_downloaded:
@@ -54,8 +55,8 @@ def save_day_statistics(program_start, program_end, num_of_files_downloaded, fil
     
         file.close()
 
-        moving_files.move_file(file_name, 'C:/Users/tedst/Documents/Augsburg University Files/Programming Files/Personal-Projects/Python Projects/Stock Data Web Scraper',
-                               'C:/Users/tedst/Documents/Augsburg University Files/Programming Files/Personal-Projects/Python Projects/Stock Data Web Scraper/Daily reports')
+        moving_files.move_file(file_name, 'C:/Users/tedst/source/repos/Personal-Projects/Python Projects/Stock Data Web Scraper',
+                               'C:/Users/tedst/source/repos/Personal-Projects/Python Projects/Stock Data Web Scraper/Daily reports')
 
 def run_one_test():
     """
@@ -71,7 +72,7 @@ def run_one_test():
     current_time = datetime.datetime.now()
 
     moving_files.main()
-    files_moved = moving_files.scan_folder('C:/Users/tedst/Documents/Augsburg University Files/Programming Files/Personal-Projects/Python Projects/Stock Data Web Scraper/Stock Spreadsheets',
+    files_moved = moving_files.scan_folder('C:/Users/tedst/source/repos/Personal-Projects/Python Projects/Stock Data Web Scraper/Stock Spreadsheets',
                              criteria = 'nasdaq_screener')
         
     interpreter.main()
@@ -104,7 +105,7 @@ def run_main_bot():
         current_time = datetime.datetime.now()
 
     moving_files.main()
-    files_moved = moving_files.scan_folder('C:/Users/tedst/Documents/Augsburg University Files/Programming Files/Personal-Projects/Python Projects/Stock Data Web Scraper/Stock Spreadsheets',
+    files_moved = moving_files.scan_folder('C:/Users/tedst/source/repos/Personal-Projects/Python Projects/Stock Data Web Scraper/Stock Spreadsheets',
                              criteria = 'nasdaq_screener')
         
     interpreter.main()

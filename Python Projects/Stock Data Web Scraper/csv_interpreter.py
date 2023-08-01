@@ -1,7 +1,8 @@
 # csv_interpreter.py file
 #
 # Created -- Ted Strombeck -- July 2021
-# Version 1.0
+# Last Updated -- July 31, 2023
+# Version 1.0.1
 #
 
 import os
@@ -12,14 +13,19 @@ import moving_files
 import datetime
 import time
 
-# TODO -----------------------------------------------------------
-#   - process csv files that haven't been sorted yet --------->  |
-#   - move the files once they have been processed ----------->  |
-#   - make contenders csv file ------------------------------->  |
-#   - place contending stocks into contender csv file -------->  |
-#           - make sure not to overwrite any stocks ---------->  |
-#   - refactor and break down into distinct functions -------->  |
-# ----------------------------------------------------------------
+# TODO ----------------------------------------------------------------------
+#   - process csv files that haven't been sorted yet --------->     Done    |
+#   - move the files once they have been processed ----------->     Done    |
+#   - search files for oldest file on record ----------------->  Working on |
+#   - create functionality to generate reports for ----------->             |
+#     individual stocks based on newest and oldest                          |
+#     data that we have. (Searchable by ticker)                             |
+#   - revise clean_file logic -------------------------------->             |
+#   - make contenders csv file ------------------------------->             |
+#   - place contending stocks into contender csv file -------->             |
+#           - make sure not to overwrite any stocks ---------->             |
+#   - refactor and break down into distinct functions -------->             |
+# ---------------------------------------------------------------------------
 
 def update_sorted_spreadsheet_records(filename):
     """
@@ -44,7 +50,7 @@ def clean_file(filename):
     String
         filename: the string name of the file to be added to the csv file
     """
-    with open('C:/Users/tedst/Documents/Augsburg University Files/Programming Files/Personal-Projects/Python Projects/Stock Data Web Scraper/Stock Spreadsheets/' + filename,'r') as input_file:
+    with open('C:/Users/tedst/source/repos/Personal-Projects/Python Projects/Stock Data Web Scraper/Stock Spreadsheets/' + filename,'r') as input_file:
         csv_reader = csv.reader(input_file, delimiter=',')
         line_count = 0
 
@@ -72,7 +78,7 @@ def clean_file(filename):
                 lines_to_write.append(item)
             line_count += 1
 
-    with open('C:/Users/tedst/Documents/Augsburg University Files/Programming Files/Personal-Projects/Python Projects/Stock Data Web Scraper/Stock Spreadsheets/' + filename,'w', newline='') as write_file:
+    with open('C:/Users/tedst/source/repos/Personal-Projects/Python Projects/Stock Data Web Scraper/Stock Spreadsheets/' + filename,'w', newline='') as write_file:
         csv_writer = csv.writer(write_file, delimiter=',')
 
         csv_writer.writerow(['Symbol', 'Name', 'Last Sale', 'Net Change_v2', '% Change', 'Market Cap', 'Country',
@@ -93,15 +99,103 @@ def rename_file(file_name):
     String
         file_name: the name of the file to be renamed
     """
-    file_path = 'C:/Users/tedst/Documents/Augsburg University Files/Programming Files/Personal-Projects/Python Projects/Stock Data Web Scraper/Stock Spreadsheets/'
-    destination_path = 'C:/Users/tedst/Documents/Augsburg University Files/Programming Files/Personal-Projects/Python Projects/Stock Data Web Scraper/Stock Spreadsheets/Sorted Records/'
+    file_path = 'C:/Users/tedst/source/repos/Personal-Projects/Python Projects/Stock Data Web Scraper/Stock Spreadsheets/'
+    destination_path = 'C:/Users/tedst/source/repos/Personal-Projects/Python Projects/Stock Data Web Scraper/Stock Spreadsheets/Sorted Records/'
     current_time = datetime.datetime.now()
     new_file_name = 'nasdaq_screener_%s_%s_%s__%s_%s_%s.csv' % (current_time.day, current_time.month, current_time.year, current_time.hour, current_time.minute, current_time.second) 
     os.rename(file_path + file_name, destination_path + new_file_name)
 
+def generate_candidate_report(stock_ticker):
+    """
+    generate_candidate_report function creates a text file report for a particular stock where it returns key information about the stock
+
+    Parameters
+    ----------
+    String     
+        stock_ticker: the name of the stock ticker to search for
+    """
+
+    # find most recent file <-- break down into own function
+    max_date = [None, None, -1, -1, -1, None, -1, -1, -1]
+    current_Data = None
+    min_date = [None, None, 99, 99, 9999, None, 99, 99, 99]
+    past_Data = None
+
+    list_of_files = moving_files.scan_folder(source_folder='C:/Users/tedst/source/repos/Personal-Projects/Python Projects/Stock Data Web Scraper/Stock Spreadsheets/Sorted Records', criteria='nasdaq_screener')#glob.glob('C:/Users/tedst/source/repos/Personal-Projects/Python Projects/Stock Data Web Scraper/Stock Spreadsheets/Sorted Records/*.csv')
+    
+    for item in list_of_files:
+        
+        result = item.split("_")
+        result[4] = int(result[4])
+        result[3] = int(result[3])
+        result[2] = int(result[2])
+        result[6] = int(result[6])
+        result[7] = int(result[7])
+        result[-1] = int(result[-1].split('.')[0])
+
+
+        if result[4] >= max_date[4]:
+            if result[3] >= max_date[3]:
+                if result[2] >= max_date[2]:
+                    if result[6] >= max_date[6]:
+                        if result[7] >= max_date[7]:
+                            if result[8] > max_date[8]:
+                                max_date = result
+
+    Latest_file_name = '%s_%s_%s_%s_%s__%s_%s_%s.csv' % (str(max_date[0]), str(max_date[1]), str(max_date[2]), str(max_date[3]), str(max_date[4]), str(max_date[6]), str(max_date[7]), str(max_date[8]) )
+
+    print("Lastest file: " + Latest_file_name)
+
+    # search to see if stock ticker exists in most recent file
+    with open('C:/Users/tedst/source/repos/Personal-Projects/Python Projects/Stock Data Web Scraper/Stock Spreadsheets/Sorted Records/' + Latest_file_name) as latest_file:
+        contents_array = latest_file.readlines()
+        if stock_ticker in str(contents_array):
+            print("Ticker is in file")
+        else:
+            print("Ticker can't be found")
+            return
+
+        # grab most recent data
+        for row in contents_array:
+            if row != contents_array[0]:
+                items = row.split(',')
+                if items[0] == stock_ticker:
+                    current_Data = items
+    
+    # search for oldest file <-- not currently Working
+    # expecting 26-8-2021--15-19-18
+    # getting 7-9-2021--15-6-0
+    for item in list_of_files:
+        
+        result = item.split("_")
+        result[4] = int(result[4])
+        result[3] = int(result[3])
+        result[2] = int(result[2])
+        result[6] = int(result[6])
+        result[7] = int(result[7])
+        result[-1] = int(result[-1].split('.')[0])
+
+        if result[4] <= min_date[4]:
+            if result[3] <= min_date[3]:
+                print('smallest month: ' + str(result[3]))
+                if result[2] <= min_date[2]:
+                    if result[6] <= min_date[6]:
+                        if result[7] <= min_date[7]:
+                            if result[8] < min_date[8]:
+                                min_date = result
+    print("min_date: ", end='')
+    print(min_date)
+
+    # search for ticker in oldest file
+
+    # calculate key stats to log
+
+    # generate file based on key stats
+
+
 def main():
     criteria = 'nasdaq_screener'
-    source_folder_file_path = 'C:/Users/tedst/Documents/Augsburg University Files/Programming Files/Personal-Projects/Python Projects/Stock Data Web Scraper/Stock Spreadsheets'
+    source_folder_file_path = 'C:/Users/tedst/source/repos/Personal-Projects/Python Projects/Stock Data Web Scraper/Stock Spreadsheets'
     record_files = moving_files.scan_folder(source_folder=source_folder_file_path, criteria=criteria)
 
     record_files.sort()
@@ -115,3 +209,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+    #generate_candidate_report("AAPL")

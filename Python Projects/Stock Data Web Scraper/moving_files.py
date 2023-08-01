@@ -1,7 +1,8 @@
 # moving_downloaded_file.py file
 #
 # Created -- Ted Strombeck -- July 2021
-# Version 1.0
+# Last Updated -- July 31, 2023
+# Version 1.0.1
 #
 import shutil
 from os import listdir
@@ -94,7 +95,7 @@ def main():
     criteria = 'nasdaq_screener'
     file_name = 'nasdaq_screener_1626390668384.csv'
     source_folder = 'C:/Users/tedst/Downloads'
-    destination_folder = 'C:/Users/tedst/Documents/Augsburg University Files/Programming Files/Personal-Projects/Python Projects/Stock Data Web Scraper/Stock Spreadsheets'
+    destination_folder = 'C:/Users/tedst/source/repos/Personal-Projects/Python Projects/Stock Data Web Scraper/Stock Spreadsheets'
 
     items_to_move = scan_folder(source_folder, criteria)
 
