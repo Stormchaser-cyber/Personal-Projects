@@ -1,7 +1,12 @@
 # download_csv.py
+#
+# Created -- Ted Strombeck -- July 2021 
+# Last Updated -- July 31, 2023
+# Version 1.0.1
+# 
 
 # URL: "https://www.nasdaq.com/market-activity/stocks/screener"
-# ID: "nasdaq-screener__form-button--download ns-download-1")
+# ID: "nasdaq-screener__form-button--download ns-download-1"
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -22,9 +27,9 @@ def download_csv_from_url_by_xpath(url, xpath):
     ### Works! Just takes a little bit of awhile, not too sure why ###
     options = webdriver.ChromeOptions()
     
-    #options.add_argument('--headless') #Not showing the webpage pop up
+    #options.add_argument('--headless') # Not showing the webpage pop up
     
-    options.add_argument('--log-level=3') #Only showing logs if they are fatal
+    options.add_argument('--log-level=3') # Only showing logs if they are fatal
     
     browser = webdriver.Chrome(options=options) # Creating a chrome browser object
 
@@ -33,9 +38,13 @@ def download_csv_from_url_by_xpath(url, xpath):
     time.sleep(10) # sleeping for 10 seconds once we get on the webpage so we have time for everything to load
 
     try:
-        browser.find_element_by_xpath(xpath).click() # navigating through the xpath and clicking on the element
-    except:
-        print('Didn\'t work')
+        browser.find_element("xpath", xpath).click() # navigating through the xpath and clicking on the element
+    except AttributeError as ex:
+        print("Attribute Error: ", end="")
+        print(ex)
+    except Exception as ex:
+        print('Exception caught: ',end='')
+        print(ex)
 
     time.sleep(5) # sleeping for 5 seconds to ensure that the download is able to go through
 
@@ -46,10 +55,8 @@ def main():
     Main function to control and run the functions as you initially would in main
     """
 
-    
-
     download_csv_from_url_by_xpath(url="https://www.nasdaq.com/market-activity/stocks/screener",
-                                   xpath='/html/body/div[2]/div/main/div[2]/article/div[3]/div[1]/div/div/div[3]/div[2]/div[2]/div/button')
+                                   xpath='/html/body/div[3]/div/main/div[2]/article/div[3]/div[1]/div/div/div[3]/div[2]/div[2]/div/button')
     
     
 
