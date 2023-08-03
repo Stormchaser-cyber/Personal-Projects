@@ -35,7 +35,6 @@ class TestDownloadCsv(unittest.TestCase):
         # calling function with empty url
         with self.assertRaises(exceptions.InvalidArgumentException):
             download_csv.download_csv_from_url_by_xpath(url="", xpath=stock_button_xpath)
-            #to_upper("")
 
 
     def test_download_csv_from_url_by_xpath_blank_xpath(self):
