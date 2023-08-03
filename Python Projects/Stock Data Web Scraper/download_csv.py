@@ -56,7 +56,7 @@ def main():
     """
 
     download_csv_from_url_by_xpath(url="https://www.nasdaq.com/market-activity/stocks/screener",
-                                   xpath='/html/body/div[3]/div/main/div[2]/article/div[3]/div[1]/div/div/div[3]/div[2]/div[2]/div/button')
+                                   xpath='/html/body/div[4]/div/main/div[2]/article/div[3]/div[1]/div/div/div[3]/div[2]/div[2]/div/button')
     
     
 
