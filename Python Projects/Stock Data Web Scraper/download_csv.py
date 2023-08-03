@@ -24,6 +24,9 @@ def download_csv_from_url_by_xpath(url, xpath):
         xpath: the xpath of the element in the html code
     """
 
+    if (len(xpath) == 0) or (len(url) == 0):
+        raise selenium_exceptions.InvalidArgumentException
+
     ### Works! Just takes a little bit of awhile, not too sure why ###
     options = webdriver.ChromeOptions()
     
