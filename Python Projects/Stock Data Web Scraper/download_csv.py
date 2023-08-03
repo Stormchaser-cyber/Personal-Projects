@@ -10,6 +10,8 @@
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+import selenium.common.exceptions as selenium_exceptions
+
 import time
 
 def download_csv_from_url_by_xpath(url, xpath):
@@ -45,9 +47,31 @@ def download_csv_from_url_by_xpath(url, xpath):
     except AttributeError as ex:
         print("Attribute Error: ", end="")
         print(ex)
-    except Exception as ex:
-        print('Exception caught: ',end='')
+        browser.quit()
+    except selenium_exceptions.NoSuchElementException as ex:
+        print("Element cannot be found: ", end="")
         print(ex)
+        browser.quit()
+    except selenium_exceptions.TimeoutException as ex:
+        print("Program took too long: ", end="")
+        print(ex)
+        browser.quit()
+    except selenium_exceptions.NoSuchAttributeException as ex:
+        print("Website does not contain attribute of element: ", end="")
+        print(ex)
+        browser.quit()
+    except selenium_exceptions.ElementNotInteractableException as ex:
+        print("Element not currently interactable : ", end="")
+        print(ex)
+        browser.quit()
+    except selenium_exceptions.InvalidSelectorException as ex:
+        print("Invalid selector, most likely invalid xpath")
+        print(ex)
+        browser.quit()
+    except Exception as ex:
+        print('Unsupported Exception caught: ',end='')
+        print(type(ex))
+        browser.quit()
 
     time.sleep(5) # sleeping for 5 seconds to ensure that the download is able to go through
 
@@ -60,7 +84,7 @@ def main():
 
     download_csv_from_url_by_xpath(url="https://www.nasdaq.com/market-activity/stocks/screener",
                                    xpath='/html/body/div[4]/div/main/div[2]/article/div[3]/div[1]/div/div/div[3]/div[2]/div[2]/div/button')
-    
+
     
 
 
