@@ -62,30 +62,35 @@ def run_one_test():
     """
     run_one_test: runs one iteration where it attempts to download a stock data csv file for troubleshooting purposes
     """
-    program_start = datetime.datetime.now()
-    current_time = datetime.datetime.now()
-    program_end = None
-    number_of_files = 0
 
-    download.main()
-    number_of_files += 1
-    current_time = datetime.datetime.now()
+    try:
 
-    moving_files.main()
-    files_moved = moving_files.scan_folder('C:/Users/tedst/source/repos/Personal-Projects/Python Projects/Stock Data Web Scraper/Stock Spreadsheets',
-                             criteria = 'nasdaq_screener')
+        program_start = datetime.datetime.now()
+        current_time = datetime.datetime.now()
+        program_end = None
+        number_of_files = 0
+
+        download.main()
+        number_of_files += 1
+        current_time = datetime.datetime.now()
+
+        moving_files.main()
+        files_moved = moving_files.scan_folder('C:/Users/tedst/source/repos/Personal-Projects/Python Projects/Stock Data Web Scraper/Stock Spreadsheets',
+                                 criteria = 'nasdaq_screener')
         
-    interpreter.main()
+        interpreter.main()
     
-    program_end = datetime.datetime.now()
+        program_end = datetime.datetime.now()
     
 
-    print('Started at: ', program_start)
-    print('Ended at: ', program_end)
-    print('Downloaded: ', number_of_files, ' files')
-    print('Number of Files moved: ', len(files_moved))
+        print('Started at: ', program_start)
+        print('Ended at: ', program_end)
+        print('Downloaded: ', number_of_files, ' files')
+        print('Number of Files moved: ', len(files_moved))
 
-    save_day_statistics(program_start, program_end, number_of_files, files_moved)
+        save_day_statistics(program_start, program_end, number_of_files, files_moved)
+    except:
+        print("An unforseen exception occurred")
 
 def run_main_bot():
     """
