@@ -1,8 +1,8 @@
 # csv_interpreter.py file
 #
 # Created -- Ted Strombeck -- July 2021
-# Last Updated -- July 31, 2023
-# Version 1.0.1
+# Last Updated -- August 7, 2023
+# Version 1.0.3
 #
 
 import os
@@ -105,40 +105,37 @@ def rename_file(file_name):
     new_file_name = 'nasdaq_screener_%s_%s_%s__%s_%s_%s.csv' % (current_time.year, current_time.month, current_time.day, current_time.hour, current_time.minute, current_time.second) 
     os.rename(file_path + file_name, destination_path + new_file_name)
 
-def generate_candidate_report(stock_ticker):
+def find_most_recent_nasdaq_screener_file(source_folder_file_path):
     """
-    generate_candidate_report function creates a text file report for a particular stock where it returns key information about the stock
+    find_most_recent_nasdaq_screener_file function finds the most recently downloaded and cleaned nasdaq screener file based off of the file's naming convention
 
     Parameters
     ----------
     String     
-        stock_ticker: the name of the stock ticker to search for
-    """
+        source_folder_file_path: the file path of the folder to search
 
-    # find most recent file <-- break down into own function
+    Returns
+    ----------
+    String
+        file_name: the name of the most recent file
+    """
     max_date = None
     max_file_name = ""
-    current_date = None
-    current_Data = None
-    oldest_Data = None
-    min_date = None
-    min_file_name = ""
-    past_Data = None
 
-    list_of_files = moving_files.scan_folder(source_folder='C:/Users/tedst/source/repos/Personal-Projects/Python Projects/Stock Data Web Scraper/Stock Spreadsheets/Sorted Records', criteria='nasdaq_screener')
-    
+    list_of_files = moving_files.scan_folder(source_folder=source_folder_file_path, criteria='nasdaq_screener')
+
     for item in list_of_files:
         result = item.split("_")
 
         if max_date == None:
             max_date = datetime.date(int(result[2]), int(result[3]), int(result[4]))
             max_file_name = item
+        else:
+            current_date = datetime.date(int(result[2]), int(result[3]), int(result[4]))
 
-        current_date = datetime.date(int(result[2]), int(result[3]), int(result[4]))
-
-        if current_date > max_date:
-            max_date = current_date
-            max_file_name = item
+            if current_date > max_date:
+                max_date = current_date
+                max_file_name = item
 
     result = max_file_name.split("_")
     year = int(result[2])
@@ -149,39 +146,40 @@ def generate_candidate_report(stock_ticker):
     second = int(result[-1].split('.')[0])
 
     Latest_file_name = '%s_%s_%s_%s_%s__%s_%s_%s.csv' % (result[0], result[1],year, month, day, hour, minute, second)
-
-    print("Lastest file: " + Latest_file_name)
-
-    # search to see if stock ticker exists in most recent file <-- break into separate function
-    with open('C:/Users/tedst/source/repos/Personal-Projects/Python Projects/Stock Data Web Scraper/Stock Spreadsheets/Sorted Records/' + Latest_file_name) as latest_file:
-        contents_array = latest_file.readlines()
-        if stock_ticker in str(contents_array):
-            print("Ticker is in file")
-        else:
-            print("Ticker can't be found")
-            return
-
-        # grab most recent data
-        for row in contents_array:
-            if row != contents_array[0]:
-                items = row.split(',')
-                if items[0] == stock_ticker:
-                    current_Data = items
-    latest_file.close()
     
-    # search for oldest file <-- break into separate function
+    return Latest_file_name
+
+def find_oldest_nasdaq_screener_file(source_folder_file_path):
+    """
+    find_oldest_nasdaq_screener_file function finds the most recently downloaded and cleaned nasdaq screener file based off of the file's naming convention
+
+    Parameters
+    ----------
+    String     
+        source_folder_file_path: the file path of the folder to search
+
+    Returns
+    ----------
+    String
+        file_name: the name of the oldest file on record
+    """
+    min_date = None
+    min_file_name = ""
+
+    list_of_files = moving_files.scan_folder(source_folder=source_folder_file_path, criteria='nasdaq_screener')
+
     for item in list_of_files:
         result = item.split("_")
 
         if min_date == None:
             min_date = datetime.date(int(result[2]), int(result[3]), int(result[4]))
             min_file_name = item
+        else:
+            current_date = datetime.date(int(result[2]), int(result[3]), int(result[4]))
 
-        current_date = datetime.date(int(result[2]), int(result[3]), int(result[4]))
-
-        if current_date < min_date:
-            min_date = current_date
-            min_file_name = item
+            if current_date < min_date:
+                min_date = current_date
+                min_file_name = item
 
     result = min_file_name.split("_")
     year = int(result[2])
@@ -192,29 +190,99 @@ def generate_candidate_report(stock_ticker):
     second = int(result[-1].split('.')[0])
 
     Oldest_file_name = '%s_%s_%s_%s_%s__%s_%s_%s.csv' % (result[0], result[1],year, month, day, hour, minute, second)
+    
+    return Oldest_file_name
 
-    print("Oldest file: " + Oldest_file_name)
+def get_stock_data_from_nadaq_screener_file(file_to_open_file_path, stock_ticker):
+    """
+    find_oldest_nasdaq_screener_file function finds the most recently downloaded and cleaned nasdaq screener file based off of the file's naming convention
 
-    # search for ticker in oldest file <-- break into separate function
-    with open('C:/Users/tedst/source/repos/Personal-Projects/Python Projects/Stock Data Web Scraper/Stock Spreadsheets/Sorted Records/' + Oldest_file_name) as oldest_file:
-        contents_array = oldest_file.readlines()
+    Parameters
+    ----------
+    String     
+        file_to_open_file_path: the file path of the file to open
+        stock_ticker: the string of the stock ticker to search the file for
+
+    Returns
+    ----------
+    List
+        returning_data: a list of the data related to the specific stock ticker
+    """
+    returning_data = None
+
+    with open(file_to_open_file_path) as file:
+        contents_array = file.readlines()
         if stock_ticker in str(contents_array):
-            print("Ticker is in file")
+            print("\t##\t\tTicker is in file" + "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  ##")
         else:
-            print("Ticker can't be found")
+            print("WARNING: Ticker can't be found")
             return
 
-        # grab data from file
+        # grab most recent data
         for row in contents_array:
             if row != contents_array[0]:
                 items = row.split(',')
                 if items[0] == stock_ticker:
-                    oldest_Data = items
-    oldest_file.close()
+                    returning_data = items
+    file.close()
+
+    return returning_data
+
+
+def generate_candidate_report(stock_ticker):
+    """
+    generate_candidate_report function creates a text file report for a particular stock where it returns key information about the stock
+
+    Parameters
+    ----------
+    String     
+        stock_ticker: the name of the stock ticker to search for
+    """
+
+    
+    max_date = None
+    max_file_name = ""
+    current_date = None
+    current_Data = None
+    oldest_Data = None
+    min_date = None
+    min_file_name = ""
+    past_Data = None
+
+    print(r""" 
+        ############################################################################################################################################################################
+        ##   ________                                   __           _________                    .___.__    .___       __           __________                             __    ##
+        ##  /  _____/  ____   ____   ________________ _/  |_  ____   \_   ___ \_____    ____    __| _/|__| __| _/____ _/  |_  ____   \______   \ ____ ______   ____________/  |_  ##
+        ## /   \  ____/ __ \ /    \_/ __ \_  __ \__  \\   __\/ __ \  /    \  \/\__  \  /    \  / __ | |  |/ __ |\__  \\   __\/ __ \   |       _// __ \\____ \ /  _ \_  __ \   __\ ##
+        ## \    \_\  \  ___/|   |  \  ___/|  | \// __ \|  | \  ___/  \     \____/ __ \|   |  \/ /_/ | |  / /_/ | / __ \|  | \  ___/   |    |   \  ___/|  |_> >  <_> )  | \/|  |   ##
+        ##  \______  /\___  >___|  /\___  >__|  (____  /__|  \___  >  \______  (____  /___|  /\____ | |__\____ |(____  /__|  \___  >  |____|_  /\___  >   __/ \____/|__|   |__|   ##
+        ##         \/     \/     \/     \/           \/          \/          \/     \/     \/      \/         \/     \/          \/          \/     \/|__|                        ##
+        ##                                                                                                                                                                v 1.0.3 ##
+        ############################################################################################################################################################################
+    """)
+
+    # find most recent file
+    Latest_file_name = find_most_recent_nasdaq_screener_file(source_folder_file_path='C:/Users/tedst/source/repos/Personal-Projects/Python Projects/Stock Data Web Scraper/Stock Spreadsheets/Sorted Records')
+    
+    print("\t############################################################################################################################################################################")
+    print("\t##\tLastest file: " + Latest_file_name + "\t\t\t\t\t\t\t\t\t\t\t\t\t\t  ##")
+
+    # search to see if stock ticker exists in most recent file
+    current_Data = get_stock_data_from_nadaq_screener_file(file_to_open_file_path='C:/Users/tedst/source/repos/Personal-Projects/Python Projects/Stock Data Web Scraper/Stock Spreadsheets/Sorted Records/' + Latest_file_name, stock_ticker=stock_ticker)
+
+    # search for oldest file
+    Oldest_file_name = find_oldest_nasdaq_screener_file(source_folder_file_path='C:/Users/tedst/source/repos/Personal-Projects/Python Projects/Stock Data Web Scraper/Stock Spreadsheets/Sorted Records')
+
+    print("\t##\tOldest file:  " + Oldest_file_name + "\t\t\t\t\t\t\t\t\t\t\t\t\t\t  ##")
+
+    # search for ticker in oldest file
+    oldest_Data = get_stock_data_from_nadaq_screener_file(file_to_open_file_path='C:/Users/tedst/source/repos/Personal-Projects/Python Projects/Stock Data Web Scraper/Stock Spreadsheets/Sorted Records/' + Oldest_file_name, stock_ticker=stock_ticker)
+    
+    print("\t############################################################################################################################################################################")
 
     # calculate key stats to log
-    print("Current: ", current_Data)
-    print("Oldest:  ", oldest_Data)
+    print("\n\tCurrent: ", current_Data)
+    print("\tOldest:  ", oldest_Data)
 
     # Calculate P/E
 
