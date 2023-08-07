@@ -1,0 +1,51 @@
+Stormwatch Stock Reporter Closed-Source Proprietary License
+
+Version 1.0, 8/7/2023
+
+IMPORTANT: PLEASE READ THIS LICENSE CAREFULLY BEFORE USING THE SOFTWARE.
+
+1. Definitions
+
+   "Software" refers to the Stormwatch Stock Reporter and any associated documentation, files, and materials provided with the software.
+
+   "Licensee" refers to the individual or entity obtaining the right to use the Software under the terms of this license.
+
+2. License Grant
+
+   Subject to the terms and conditions of this License, Ted Strombeck hereby grants Licensee a non-exclusive, non-transferable, revocable license to use the Software for internal, non-commercial purposes.
+
+3. Restrictions
+
+   a. Licensee shall not reverse engineer, decompile, disassemble, modify, or create derivative works based on the Software, in whole or in part.
+
+   b. Licensee shall not distribute, sublicense, sell, lease, rent, or otherwise transfer the Software to any third party.
+
+4. Ownership
+
+   Ted Strombeck retains all rights, title, and interest in and to the Software, including all intellectual property rights.
+
+5. Warranty Disclaimer
+
+   The Software is provided "as is," without warranty of any kind, either express or implied, including, but not limited to, the warranties of merchantability, fitness for a particular purpose, or non-infringement.
+
+6. Limitation of Liability
+
+   In no event shall Ted Strombeck be liable for any damages, whether in contract, tort, or otherwise, arising out of the use of or inability to use the Software.
+
+7. Termination
+
+   This License is effective until terminated. Ted Strombeck may terminate this License at any time if Licensee fails to comply with any term of this License. Upon termination, Licensee shall cease all use of the Software and destroy all copies.
+
+8. Governing Law
+
+   This License shall be governed by and construed in accordance with the laws of [Your Jurisdiction], without regard to its conflicts of laws principles.
+
+9. Entire Agreement
+
+   This License constitutes the entire agreement between Licensee and Ted Strombeck concerning the Software and supersedes all prior or contemporaneous understandings, agreements, representations, and warranties.
+
+BY USING THE SOFTWARE, LICENSEE ACKNOWLEDGES THAT IT HAS READ AND UNDERSTOOD THIS LICENSE AND AGREES TO BE BOUND BY ITS TERMS AND CONDITIONS.
+
+For inquiries or licensing options, please contact:
+
+Ted Strombeck @ ted.strombeck1@gmail.com
