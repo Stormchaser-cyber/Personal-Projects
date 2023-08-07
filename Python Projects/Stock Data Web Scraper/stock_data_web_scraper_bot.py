@@ -1,8 +1,8 @@
 # stock_data_web_scraper_bot
 #
 # Created -- Ted Strombeck -- August 2021
-# Last Updated -- July 31, 2023
-# Version 1.0.1
+# Last Updated -- August 7, 2023
+# Version 1.0.2
 #
 
 import csv_interpreter as interpreter
@@ -96,12 +96,29 @@ def run_main_bot():
     """
     run_main_bot function runs the main logic for the stock gathering bot
     """
+    ## ascii art done at http://patorjk.com/software/taag/#p=display&f=Graffiti&t=Stock%20Bot
+    print(r"""
+        ############################################################################################################################################################################
+        ##                                                      _________ __                 __     __________        __                                                          ##
+        ##                                                     /   _____//  |_  ____   ____ |  | __ \______   \ _____/  |_                                                        ##
+        ##                                                     \_____  \\   __\/  _ \_/ ___\|  |/ /  |    |  _//  _ \   __\                                                       ##
+        ##                                                     /        \|  | (  <_> )  \___|    <   |    |   (  <_> )  |                                                         ##
+        ##                                                    /_______  /|__|  \____/ \___  >__|_ \  |______  /\____/|__|                                                         ##
+        ##                                                            \/                  \/     \/         \/                                                                    ##
+        ##                                                                                                                                                                v 1.0.2 ##
+        ############################################################################################################################################################################
+    
+    """)
 
     program_start = datetime.datetime.now()
     current_time = datetime.datetime.now()
     program_end = None
     time_to_wait = int(60 * 30) # waiting 30 minutes before grabbing more data
     number_of_files = 0
+
+    print("\t############################################################################################################################################################################")
+    print('\t{:2s}\t{:162s}{:2s}'.format("##", "Program started: "+ str(program_start), "##" ))
+    print("\t############################################################################################################################################################################")
 
     while current_time.hour < 15: # running the bot until 3pm
         download.main()
@@ -116,12 +133,16 @@ def run_main_bot():
     interpreter.main()
     
     program_end = datetime.datetime.now()
-    
 
-    print('Started at: ', program_start)
-    print('Ended at: ', program_end)
-    print('Downloaded: ', number_of_files, ' files')
-    print('Number of Files moved: ', len(files_moved))
+    print("\t############################################################################################################################################################################")
+    print('\t{:2s}\t{:162s}{:2s}'.format("##", "Info", "##" ))
+    print('\t{:2s}\t{:162s}{:2s}'.format("##", "Downloaded: " + str(number_of_files) + " files", "##" ))
+    print('\t{:2s}\t{:162s}{:2s}'.format("##", "Number of Files moved: " + str(len(files_moved), "##" ))
+    print("\t############################################################################################################################################################################")
+
+    print("\t############################################################################################################################################################################")
+    print('\t{:2s}\t{:162s}{:2s}'.format("##", "Program ended: "+ str(program_end), "##" ))
+    print("\t############################################################################################################################################################################")
 
     save_day_statistics(program_start, program_end, number_of_files, files_moved)
 
