@@ -146,11 +146,11 @@ def run_main_bot():
     while current_time.hour < 15: # running the bot until 3pm
         download.main()
         number_of_files += 1
-        time.sleep(time_to_wait)
-        current_time = datetime.datetime.now()
         print("\t############################################################################################################################################################################")
         print('\t{:2s}\t{:162s}{:2s}'.format("##", "Downloaded file at: "+ str(download.last_time_downloaded), "##" ))
         print("\t############################################################################################################################################################################")
+        time.sleep(time_to_wait)
+        current_time = datetime.datetime.now()
 
     moving_files.main()
     files_moved = moving_files.scan_folder('C:/Users/tedst/source/repos/Personal-Projects/Python Projects/Stock Data Web Scraper/Stock Spreadsheets',
@@ -173,8 +173,8 @@ def run_main_bot():
     save_day_statistics(program_start, program_end, number_of_files, files_moved)
 
 def main():
-    run_one_test()
-    #run_main_bot()
+    #run_one_test()
+    run_main_bot()
     
     
 
