@@ -11,8 +11,11 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 import selenium.common.exceptions as selenium_exceptions
-
+from webdriver_manager.chrome import ChromeDriverManager
 import time
+import datetime
+
+last_time_downloaded = None
 
 def download_csv_from_url_by_xpath(url, xpath):
     """
@@ -25,12 +28,15 @@ def download_csv_from_url_by_xpath(url, xpath):
         url: the string of the url of the website
         xpath: the xpath of the element in the html code
     """
+    global last_time_downloaded
 
     if (len(xpath) == 0) or (len(url) == 0):
         raise selenium_exceptions.InvalidArgumentException
 
     ### Works! Just takes a little bit of awhile, not too sure why ###
     options = webdriver.ChromeOptions()
+
+    options.add_experimental_option('excludeSwitches', ['enable-logging'])
     
     #options.add_argument('--headless') # Not showing the webpage pop up
     
@@ -76,6 +82,8 @@ def download_csv_from_url_by_xpath(url, xpath):
     time.sleep(5) # sleeping for 5 seconds to ensure that the download is able to go through
 
     browser.quit() # closing all terminals and windows
+
+    last_time_downloaded = datetime.datetime.now()
 
 def main():
     """
