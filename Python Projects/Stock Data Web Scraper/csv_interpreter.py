@@ -216,7 +216,27 @@ def generate_candidate_report(stock_ticker):
     print("Current: ", current_Data)
     print("Oldest:  ", oldest_Data)
 
-    # generate file based on key stats
+    # Calculate P/E
+
+    # calculate EPS
+
+    # calculate P/B
+
+    # calculate Dividend Yield
+
+    # calculate Growth Rates (historical and projected earnings)
+
+    # calculate debt-to-equity ratio
+
+    # calculate ROE
+
+    # calculate operating margin
+
+    # calculate FCF
+
+    # Calculate beta for risk factoring
+
+    # generate file based on key stats from above
 
 
 def main():
