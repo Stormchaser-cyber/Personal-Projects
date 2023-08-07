@@ -169,33 +169,52 @@ def generate_candidate_report(stock_ticker):
                     current_Data = items
     latest_file.close()
     
-    # search for oldest file <-- not currently Working
-    # expecting 26-8-2021--15-19-18
-    # getting 7-9-2021--15-6-0
+    # search for oldest file <-- break into separate function
     for item in list_of_files:
-        
         result = item.split("_")
-        result[4] = int(result[4])
-        result[3] = int(result[3])
-        result[2] = int(result[2])
-        result[6] = int(result[6])
-        result[7] = int(result[7])
-        result[-1] = int(result[-1].split('.')[0])
 
-        if result[4] <= min_date[4]:
-            if result[3] <= min_date[3]:
-                print('smallest month: ' + str(result[3]))
-                if result[2] <= min_date[2]:
-                    if result[6] <= min_date[6]:
-                        if result[7] <= min_date[7]:
-                            if result[8] < min_date[8]:
-                                min_date = result
-    print("min_date: ", end='')
-    print(min_date)
+        if min_date == None:
+            min_date = datetime.date(int(result[2]), int(result[3]), int(result[4]))
+            min_file_name = item
 
-    # search for ticker in oldest file
+        current_date = datetime.date(int(result[2]), int(result[3]), int(result[4]))
+
+        if current_date < min_date:
+            min_date = current_date
+            min_file_name = item
+
+    result = min_file_name.split("_")
+    year = int(result[2])
+    month = int(result[3])
+    day = int(result[4])
+    hour = int(result[6])
+    minute = int(result[7])
+    second = int(result[-1].split('.')[0])
+
+    Oldest_file_name = '%s_%s_%s_%s_%s__%s_%s_%s.csv' % (result[0], result[1],year, month, day, hour, minute, second)
+
+    print("Oldest file: " + Oldest_file_name)
+
+    # search for ticker in oldest file <-- break into separate function
+    with open('C:/Users/tedst/source/repos/Personal-Projects/Python Projects/Stock Data Web Scraper/Stock Spreadsheets/Sorted Records/' + Oldest_file_name) as oldest_file:
+        contents_array = oldest_file.readlines()
+        if stock_ticker in str(contents_array):
+            print("Ticker is in file")
+        else:
+            print("Ticker can't be found")
+            return
+
+        # grab data from file
+        for row in contents_array:
+            if row != contents_array[0]:
+                items = row.split(',')
+                if items[0] == stock_ticker:
+                    oldest_Data = items
+    oldest_file.close()
 
     # calculate key stats to log
+    print("Current: ", current_Data)
+    print("Oldest:  ", oldest_Data)
 
     # generate file based on key stats
 
