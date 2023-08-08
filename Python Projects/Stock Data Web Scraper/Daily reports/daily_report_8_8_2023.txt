@@ -1,0 +1,10 @@
+Daily report for 8_8_2023
+Started at: 2023-08-08 13:11:32.360083
+Finished at: 2023-08-08 15:13:35.911890
+Downloaded: 4 files
+
+Files that were downloaded and cleaned:
+ - nasdaq_screener_1691518309200.csv
+ - nasdaq_screener_1691520141051.csv
+ - nasdaq_screener_1691521969881.csv
+ - nasdaq_screener_1691523799218.csv
