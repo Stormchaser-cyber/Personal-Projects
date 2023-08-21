@@ -10,6 +10,7 @@ from os import listdir
 from os.path import isfile
 import csv
 import moving_files
+import download_csv
 import datetime
 import time
 
@@ -261,6 +262,10 @@ def generate_candidate_report(stock_ticker):
         ############################################################################################################################################################################
     """)
 
+    print("\t############################################################################################################################################################################")
+    print('\t{:2s}\t{:162s}{:2s}'.format("##", "Selected Stock: "+ str(stock_ticker), "##" ))
+    print("\t############################################################################################################################################################################")
+
     # find most recent file
     Latest_file_name = find_most_recent_nasdaq_screener_file(source_folder_file_path='C:/Users/tedst/source/repos/Personal-Projects/Python Projects/Stock Data Web Scraper/Stock Spreadsheets/Sorted Records')
     
@@ -281,16 +286,25 @@ def generate_candidate_report(stock_ticker):
     print("\t############################################################################################################################################################################")
 
     # calculate key stats to log
-    print("\n\tCurrent: ", current_Data)
-    print("\tOldest:  ", oldest_Data)
+    #print("\n\tCurrent: ", current_Data)
+    #print("\tOldest:  ", oldest_Data)
 
-    # Calculate P/E
+    ### Calculate P/E (good is anything between 20-25) <- use google finance to grab
+    # p/e = (price per share) / (earnings per share)
+    eps, pe = download_csv.download_pe_and_eps_for_stock_ticker(stock_ticker).split(",")
 
     # calculate EPS
 
-    # calculate P/B
+    ### calculate EPS
+    # earnings per share = (company's net profit) / (outstanding common shares) <- grab from https://www.nasdaq.com/market-activity/stocks/{desired stock ticker}
 
-    # calculate Dividend Yield
+    print("\t############################################################################################################################################################################")
+    print('\t{:2s}\t{:162s}{:2s}'.format("##", "EPS: "+ str(eps), "##" ))
+    print('\t{:2s}\t{:162s}{:2s}'.format("##", "P/E Ratio: "+ str(pe), "##" ))
+    print("\t############################################################################################################################################################################")
+
+
+    ### calculate P/B
 
     # calculate Growth Rates (historical and projected earnings)
 

@@ -10,12 +10,72 @@
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.action_chains import ActionChains
 import selenium.common.exceptions as selenium_exceptions
 from webdriver_manager.chrome import ChromeDriverManager
 import time
 import datetime
 
 last_time_downloaded = None
+
+def download_pe_and_eps_for_stock_ticker(stock_ticker):
+    """
+    download_pe_and_eps_for_stock_ticker looks up that particular stock based on it's ticker and returns the related p/e and the eps for the stock
+
+    Parameters
+    ----------
+    String:
+        stock_ticker: the ticker of the desired stock
+
+    Returns
+    ---------
+    String:
+        A formatted string separated by a comma in order of (Eps, P/E)
+    """
+
+    eps = 0.00
+    eps_path = "/html/body/div[4]/div/main/div[2]/div[6]/div/div[1]/div/div[2]/table/tbody[2]/tr[4]/td[2]"
+    p_e_ratio = 0.00
+    p_e_ratio_path = "/html/body/div[4]/div/main/div[2]/div[6]/div/div[1]/div/div[2]/table/tbody[2]/tr[2]/td[2]"
+    url = "https://www.google.com/"
+
+    if (len(stock_ticker) == 0):
+        raise selenium_exceptions.InvalidArgumentException
+    else:
+        url = "https://www.nasdaq.com/market-activity/stocks/{:s}".format(stock_ticker)
+
+     ### Works! Just takes a little bit of awhile, not too sure why ###
+    options = webdriver.ChromeOptions()
+
+    options.add_experimental_option('excludeSwitches', ['enable-logging'])
+    
+    #options.add_argument('--headless') # Not showing the webpage pop up
+    
+    options.add_argument('--log-level=3') # Only showing logs if they are fatal
+    
+    browser = webdriver.Chrome(options=options) # Creating a chrome browser object
+
+    browser.get(url) # looking up the URL of the website
+
+    ActionChains(browser).scroll_by_amount(0, 1000).perform()
+
+    time.sleep(10) # sleeping for 10 seconds once we get on the webpage so we have time for everything to load
+
+    try:
+        p_e_ratio = browser.find_element(By.XPATH, p_e_ratio_path).get_attribute("innerHTML")
+        eps = browser.find_element(By.XPATH, eps_path).get_attribute("innerHTML")
+    except Exception as ex:
+        print('Unsupported Exception caught: ',end='')
+        print(type(ex))
+        print(ex)
+        browser.quit()
+    finally:
+        browser.quit() # closing all terminals and windows
+
+        last_time_downloaded = datetime.datetime.now()
+
+    #return eps and p/e ratio
+    return "{:s},{:s}".format(eps, p_e_ratio)
 
 def download_csv_from_url_by_xpath(url, xpath):
     """
