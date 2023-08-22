@@ -314,8 +314,15 @@ def generate_candidate_report(stock_ticker):
     print('\t{:2s}\t{:162s}{:2s}'.format("##", "Max PB: "+ str(max_pb), "##" ))
     print("\t############################################################################################################################################################################")
 
-
     ### calculate Dividend Yield
+    current_dividend_yield, min_dividend_yield, med_dividend_yield, max_dividend_yield = download_csv.download_dividend_yield_for_stock_ticker(stock_ticker).split(",")
+
+    print("\n\t############################################################################################################################################################################")
+    print('\t{:2s}\t{:162s}{:2s}'.format("##", "Current Dividend Yield: "+ str(current_dividend_yield), "##" ))
+    print('\t{:2s}\t{:162s}{:2s}'.format("##", "Min Dividend Yield: "+ str(min_dividend_yield), "##" ))
+    print('\t{:2s}\t{:162s}{:2s}'.format("##", "Med Dividend Yield: "+ str(med_dividend_yield), "##" ))
+    print('\t{:2s}\t{:162s}{:2s}'.format("##", "Max Dividend Yield: "+ str(max_dividend_yield), "##" ))
+    print("\t############################################################################################################################################################################")
 
     # calculate Growth Rates (historical and projected earnings)
 
