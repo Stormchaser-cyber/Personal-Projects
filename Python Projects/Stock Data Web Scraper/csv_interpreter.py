@@ -2,7 +2,7 @@
 #
 # Created -- Ted Strombeck -- July 2021
 # Last Updated -- August 7, 2023
-# Version 1.0.3
+# Version 1.0.4
 #
 
 import os
@@ -258,7 +258,7 @@ def generate_candidate_report(stock_ticker):
         ## \    \_\  \  ___/|   |  \  ___/|  | \// __ \|  | \  ___/  \     \____/ __ \|   |  \/ /_/ | |  / /_/ | / __ \|  | \  ___/   |    |   \  ___/|  |_> >  <_> )  | \/|  |   ##
         ##  \______  /\___  >___|  /\___  >__|  (____  /__|  \___  >  \______  (____  /___|  /\____ | |__\____ |(____  /__|  \___  >  |____|_  /\___  >   __/ \____/|__|   |__|   ##
         ##         \/     \/     \/     \/           \/          \/          \/     \/     \/      \/         \/     \/          \/          \/     \/|__|                        ##
-        ##                                                                                                                                                                v 1.0.3 ##
+        ##                                                                                                                                                                v 1.0.4 ##
         ############################################################################################################################################################################
     """)
 
@@ -269,7 +269,7 @@ def generate_candidate_report(stock_ticker):
     # find most recent file
     Latest_file_name = find_most_recent_nasdaq_screener_file(source_folder_file_path='C:/Users/tedst/source/repos/Personal-Projects/Python Projects/Stock Data Web Scraper/Stock Spreadsheets/Sorted Records')
     
-    print("\t############################################################################################################################################################################")
+    print("\n\t############################################################################################################################################################################")
     print("\t##\tLastest file: " + Latest_file_name + "\t\t\t\t\t\t\t\t\t\t\t\t\t\t  ##")
 
     # search to see if stock ticker exists in most recent file
@@ -298,13 +298,24 @@ def generate_candidate_report(stock_ticker):
     ### calculate EPS
     # earnings per share = (company's net profit) / (outstanding common shares) <- grab from https://www.nasdaq.com/market-activity/stocks/{desired stock ticker}
 
-    print("\t############################################################################################################################################################################")
+    print("\n\t############################################################################################################################################################################")
     print('\t{:2s}\t{:162s}{:2s}'.format("##", "EPS: "+ str(eps), "##" ))
     print('\t{:2s}\t{:162s}{:2s}'.format("##", "P/E Ratio: "+ str(pe), "##" ))
     print("\t############################################################################################################################################################################")
 
 
-    ### calculate P/B
+    ### calculate P/B -- high pb ratio means stocks perceived to be overvalued, lower pb ratio means stock is more undervalued. P/b of 1.0 or 2.0 is pretty good to invest in
+    current_pb, min_pb, med_pb, max_pb = download_csv.download_pb_for_stock_ticker(stock_ticker).split(",")
+
+    print("\n\t############################################################################################################################################################################")
+    print('\t{:2s}\t{:162s}{:2s}'.format("##", "Current PB: "+ str(current_pb), "##" ))
+    print('\t{:2s}\t{:162s}{:2s}'.format("##", "Min PB: "+ str(min_pb), "##" ))
+    print('\t{:2s}\t{:162s}{:2s}'.format("##", "Med PB: "+ str(med_pb), "##" ))
+    print('\t{:2s}\t{:162s}{:2s}'.format("##", "Max PB: "+ str(max_pb), "##" ))
+    print("\t############################################################################################################################################################################")
+
+
+    ### calculate Dividend Yield
 
     # calculate Growth Rates (historical and projected earnings)
 
