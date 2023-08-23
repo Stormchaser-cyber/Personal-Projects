@@ -2,7 +2,7 @@
 #
 # Created -- Ted Strombeck -- July 2021
 # Last Updated -- August 23, 2023
-# Version 1.0.6
+# Version 1.0.7
 #
 
 import os
@@ -258,7 +258,7 @@ def generate_candidate_report(stock_ticker):
         ## \    \_\  \  ___/|   |  \  ___/|  | \// __ \|  | \  ___/  \     \____/ __ \|   |  \/ /_/ | |  / /_/ | / __ \|  | \  ___/   |    |   \  ___/|  |_> >  <_> )  | \/|  |   ##
         ##  \______  /\___  >___|  /\___  >__|  (____  /__|  \___  >  \______  (____  /___|  /\____ | |__\____ |(____  /__|  \___  >  |____|_  /\___  >   __/ \____/|__|   |__|   ##
         ##         \/     \/     \/     \/           \/          \/          \/     \/     \/      \/         \/     \/          \/          \/     \/|__|                        ##
-        ##                                                                                                                                                                v 1.0.5 ##
+        ##                                                                                                                                                                v 1.0.7 ##
         ############################################################################################################################################################################
     """)
 
@@ -352,7 +352,17 @@ def generate_candidate_report(stock_ticker):
     print('\t{:2s}\t{:162s}{:2s}'.format("##", "Max ROE: "+ str(max_roe), "##" ))
     print("\t############################################################################################################################################################################")
 
-    # calculate FCF
+    ### calculate operating margin
+    current_operating_margin_percentage, min_operating_margin_percentage, med_operating_margin_percentage, max_operating_margin_percentage = download_csv.download_operating_margin_percentage_for_stock_ticker(stock_ticker).split(",")
+
+    print("\n\t############################################################################################################################################################################")
+    print('\t{:2s}\t{:162s}{:2s}'.format("##", "Current Operating Margin: "+ str(current_operating_margin_percentage)+"%", "##" ))
+    print('\t{:2s}\t{:162s}{:2s}'.format("##", "Min Operating Margin: "+ str(min_operating_margin_percentage)+"%", "##" ))
+    print('\t{:2s}\t{:162s}{:2s}'.format("##", "Med Operating Margin: "+ str(med_operating_margin_percentage)+"%", "##" ))
+    print('\t{:2s}\t{:162s}{:2s}'.format("##", "Max Operating Margin: "+ str(max_operating_margin_percentage)+"%", "##" ))
+    print("\t############################################################################################################################################################################")
+
+    ### calculate FCF
 
     # Calculate beta for risk factoring
 
