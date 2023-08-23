@@ -1,8 +1,8 @@
 # csv_interpreter.py file
 #
 # Created -- Ted Strombeck -- July 2021
-# Last Updated -- August 7, 2023
-# Version 1.0.5
+# Last Updated -- August 23, 2023
+# Version 1.0.6
 #
 
 import os
@@ -342,9 +342,15 @@ def generate_candidate_report(stock_ticker):
     print('\t{:2s}\t{:162s}{:2s}'.format("##", "Max Debt-to-Equity: "+ str(max_d2e), "##" ))
     print("\t############################################################################################################################################################################")
 
-    # calculate ROE
+    ### calculate ROE
+    current_roe, min_roe, med_roe, max_roe = download_csv.download_roe_percentage_for_stock_ticker(stock_ticker).split(",")
 
-    # calculate operating margin
+    print("\n\t############################################################################################################################################################################")
+    print('\t{:2s}\t{:162s}{:2s}'.format("##", "Current ROE: "+ str(current_roe), "##" ))
+    print('\t{:2s}\t{:162s}{:2s}'.format("##", "Min ROE: "+ str(min_roe), "##" ))
+    print('\t{:2s}\t{:162s}{:2s}'.format("##", "Med ROE: "+ str(med_roe), "##" ))
+    print('\t{:2s}\t{:162s}{:2s}'.format("##", "Max ROE: "+ str(max_roe), "##" ))
+    print("\t############################################################################################################################################################################")
 
     # calculate FCF
 
