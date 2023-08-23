@@ -2,7 +2,7 @@
 #
 # Created -- Ted Strombeck -- July 2021
 # Last Updated -- August 23, 2023
-# Version 1.0.7
+# Version 1.0.8
 #
 
 import os
@@ -258,7 +258,7 @@ def generate_candidate_report(stock_ticker):
         ## \    \_\  \  ___/|   |  \  ___/|  | \// __ \|  | \  ___/  \     \____/ __ \|   |  \/ /_/ | |  / /_/ | / __ \|  | \  ___/   |    |   \  ___/|  |_> >  <_> )  | \/|  |   ##
         ##  \______  /\___  >___|  /\___  >__|  (____  /__|  \___  >  \______  (____  /___|  /\____ | |__\____ |(____  /__|  \___  >  |____|_  /\___  >   __/ \____/|__|   |__|   ##
         ##         \/     \/     \/     \/           \/          \/          \/     \/     \/      \/         \/     \/          \/          \/     \/|__|                        ##
-        ##                                                                                                                                                                v 1.0.7 ##
+        ##                                                                                                                                                                v 1.0.8 ##
         ############################################################################################################################################################################
     """)
 
@@ -325,11 +325,11 @@ def generate_candidate_report(stock_ticker):
     print("\t############################################################################################################################################################################")
 
     ### calculate Growth Rates (historical and projected earnings)
-    current_yoy_ebitda_growth_rate, last_updated = download_csv.download_yoy_ebitda_growth_rate_for_stock_ticker(stock_ticker).split(",")
+    current_yoy_ebitda_growth_rate, ebitda_last_updated = download_csv.download_yoy_ebitda_growth_rate_for_stock_ticker(stock_ticker).split(",")
 
     print("\n\t############################################################################################################################################################################")
     print('\t{:2s}\t{:162s}{:2s}'.format("##", "Current Ebitda 5 year Growth Rate: "+ str(current_yoy_ebitda_growth_rate), "##" ))
-    print('\t{:2s}\t{:162s}{:2s}'.format("##", "Last updated: "+ str(last_updated), "##" ))
+    print('\t{:2s}\t{:162s}{:2s}'.format("##", "Last updated: "+ str(ebitda_last_updated), "##" ))
     print("\t############################################################################################################################################################################")
 
     ### calculate debt-to-equity ratio
@@ -363,8 +363,14 @@ def generate_candidate_report(stock_ticker):
     print("\t############################################################################################################################################################################")
 
     ### calculate FCF
+    current_fcf_margin_percentage, fcf_margin_percentage_last_updated = download_csv.download_fcf_margin_percentage_for_stock_ticker(stock_ticker).split(",")
 
-    # Calculate beta for risk factoring
+    print("\n\t############################################################################################################################################################################")
+    print('\t{:2s}\t{:162s}{:2s}'.format("##", "Current FCF Margin: "+ str(current_fcf_margin_percentage), "##" ))
+    print('\t{:2s}\t{:162s}{:2s}'.format("##", "Last updated: "+ str(fcf_margin_percentage_last_updated), "##" ))
+    print("\t############################################################################################################################################################################")
+
+    ### Calculate beta for risk factoring
 
     # generate file based on key stats from above
 
