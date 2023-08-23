@@ -11,6 +11,7 @@ from os.path import isfile
 import csv
 import moving_files
 import download_csv
+import download_stock_statistics
 import datetime
 import time
 
@@ -62,19 +63,6 @@ def clean_file(filename):
                 for i in range(len(item)):
                     if item[i] == '':
                         item[i] = 'n/a'
-                
-##                print('Ticker: ', item[0])
-##                print('Name: ', item[1])
-##                print('Share Price: ', item[2])
-##                print('Share Price Fluctuation ($): ', item[3])
-##                print('Share Price Fluctuation (%): ', item[4])
-##                print('Market Cap: ', item[5]) # add value to tell that there was no inputted value
-##                print('Country: ', item[6]) # add value to tell that there was no inputted value
-##                print('IPO Year: ', item[7]) # add value to tell that there was no inputted value
-##                print('Volume: ', item[8])
-##                print('Sector: ', item[9])
-##                print('Industry: ', item[10])
-##                print('\n')
 
                 lines_to_write.append(item)
             line_count += 1
@@ -89,7 +77,6 @@ def clean_file(filename):
             
     time.sleep(1)
     rename_file(filename)
-
 
 def rename_file(file_name):
     """
@@ -265,7 +252,7 @@ def generate_candidate_report(stock_ticker):
     print("\t############################################################################################################################################################################")
     print('\t{:2s}\t{:162s}{:2s}'.format("##", "Selected Stock: "+ str(stock_ticker), "##" ))
     print("\t############################################################################################################################################################################")
-
+    
     # find most recent file
     Latest_file_name = find_most_recent_nasdaq_screener_file(source_folder_file_path='C:/Users/tedst/source/repos/Personal-Projects/Python Projects/Stock Data Web Scraper/Stock Spreadsheets/Sorted Records')
     
@@ -284,17 +271,11 @@ def generate_candidate_report(stock_ticker):
     oldest_Data = get_stock_data_from_nadaq_screener_file(file_to_open_file_path='C:/Users/tedst/source/repos/Personal-Projects/Python Projects/Stock Data Web Scraper/Stock Spreadsheets/Sorted Records/' + Oldest_file_name, stock_ticker=stock_ticker)
     
     print("\t############################################################################################################################################################################")
-
-    # calculate key stats to log
-    #print("\n\tCurrent: ", current_Data)
-    #print("\tOldest:  ", oldest_Data)
-
+    
     ### Calculate P/E (good is anything between 20-25) <- use google finance to grab
     # p/e = (price per share) / (earnings per share)
-    eps, pe = download_csv.download_pe_and_eps_for_stock_ticker(stock_ticker).split(",")
-
-    # calculate EPS
-
+    eps, pe = download_stock_statistics.download_pe_and_eps_for_stock_ticker(stock_ticker).split(",")
+    
     ### calculate EPS
     # earnings per share = (company's net profit) / (outstanding common shares) <- grab from https://www.nasdaq.com/market-activity/stocks/{desired stock ticker}
 
@@ -305,7 +286,7 @@ def generate_candidate_report(stock_ticker):
 
 
     ### calculate P/B -- high pb ratio means stocks perceived to be overvalued, lower pb ratio means stock is more undervalued. P/b of 1.0 or 2.0 is pretty good to invest in
-    current_pb, min_pb, med_pb, max_pb = download_csv.download_pb_for_stock_ticker(stock_ticker).split(",")
+    current_pb, min_pb, med_pb, max_pb = download_stock_statistics.download_pb_for_stock_ticker(stock_ticker).split(",")
 
     print("\n\t############################################################################################################################################################################")
     print('\t{:2s}\t{:162s}{:2s}'.format("##", "Current PB: "+ str(current_pb), "##" ))
@@ -315,7 +296,7 @@ def generate_candidate_report(stock_ticker):
     print("\t############################################################################################################################################################################")
 
     ### calculate Dividend Yield
-    current_dividend_yield, min_dividend_yield, med_dividend_yield, max_dividend_yield = download_csv.download_dividend_yield_for_stock_ticker(stock_ticker).split(",")
+    current_dividend_yield, min_dividend_yield, med_dividend_yield, max_dividend_yield = download_stock_statistics.download_dividend_yield_for_stock_ticker(stock_ticker).split(",")
 
     print("\n\t############################################################################################################################################################################")
     print('\t{:2s}\t{:162s}{:2s}'.format("##", "Current Dividend Yield: "+ str(current_dividend_yield), "##" ))
@@ -325,7 +306,7 @@ def generate_candidate_report(stock_ticker):
     print("\t############################################################################################################################################################################")
 
     ### calculate Growth Rates (historical and projected earnings)
-    current_yoy_ebitda_growth_rate, ebitda_last_updated = download_csv.download_yoy_ebitda_growth_rate_for_stock_ticker(stock_ticker).split(",")
+    current_yoy_ebitda_growth_rate, ebitda_last_updated = download_stock_statistics.download_yoy_ebitda_growth_rate_for_stock_ticker(stock_ticker).split(",")
 
     print("\n\t############################################################################################################################################################################")
     print('\t{:2s}\t{:162s}{:2s}'.format("##", "Current Ebitda 5 year Growth Rate: "+ str(current_yoy_ebitda_growth_rate), "##" ))
@@ -333,7 +314,7 @@ def generate_candidate_report(stock_ticker):
     print("\t############################################################################################################################################################################")
 
     ### calculate debt-to-equity ratio
-    current_d2e, min_d2e, med_d2e, max_d2e = download_csv.download_debt_to_equity_for_stock_ticker(stock_ticker).split(",")
+    current_d2e, min_d2e, med_d2e, max_d2e = download_stock_statistics.download_debt_to_equity_for_stock_ticker(stock_ticker).split(",")
 
     print("\n\t############################################################################################################################################################################")
     print('\t{:2s}\t{:162s}{:2s}'.format("##", "Current Debt-to-Equity: "+ str(current_d2e), "##" ))
@@ -341,9 +322,9 @@ def generate_candidate_report(stock_ticker):
     print('\t{:2s}\t{:162s}{:2s}'.format("##", "Med Debt-to-Equity: "+ str(med_d2e), "##" ))
     print('\t{:2s}\t{:162s}{:2s}'.format("##", "Max Debt-to-Equity: "+ str(max_d2e), "##" ))
     print("\t############################################################################################################################################################################")
-
+    
     ### calculate ROE
-    current_roe, min_roe, med_roe, max_roe = download_csv.download_roe_percentage_for_stock_ticker(stock_ticker).split(",")
+    current_roe, min_roe, med_roe, max_roe = download_stock_statistics.download_roe_percentage_for_stock_ticker(stock_ticker).split(",")
 
     print("\n\t############################################################################################################################################################################")
     print('\t{:2s}\t{:162s}{:2s}'.format("##", "Current ROE: "+ str(current_roe), "##" ))
@@ -353,7 +334,7 @@ def generate_candidate_report(stock_ticker):
     print("\t############################################################################################################################################################################")
 
     ### calculate operating margin
-    current_operating_margin_percentage, min_operating_margin_percentage, med_operating_margin_percentage, max_operating_margin_percentage = download_csv.download_operating_margin_percentage_for_stock_ticker(stock_ticker).split(",")
+    current_operating_margin_percentage, min_operating_margin_percentage, med_operating_margin_percentage, max_operating_margin_percentage = download_stock_statistics.download_operating_margin_percentage_for_stock_ticker(stock_ticker).split(",")
 
     print("\n\t############################################################################################################################################################################")
     print('\t{:2s}\t{:162s}{:2s}'.format("##", "Current Operating Margin: "+ str(current_operating_margin_percentage)+"%", "##" ))
@@ -361,17 +342,17 @@ def generate_candidate_report(stock_ticker):
     print('\t{:2s}\t{:162s}{:2s}'.format("##", "Med Operating Margin: "+ str(med_operating_margin_percentage)+"%", "##" ))
     print('\t{:2s}\t{:162s}{:2s}'.format("##", "Max Operating Margin: "+ str(max_operating_margin_percentage)+"%", "##" ))
     print("\t############################################################################################################################################################################")
-
+    
     ### calculate FCF
-    current_fcf_margin_percentage, fcf_margin_percentage_last_updated = download_csv.download_fcf_margin_percentage_for_stock_ticker(stock_ticker).split(",")
+    current_fcf_margin_percentage, fcf_margin_percentage_last_updated = download_stock_statistics.download_fcf_margin_percentage_for_stock_ticker(stock_ticker).split(",")
 
     print("\n\t############################################################################################################################################################################")
     print('\t{:2s}\t{:162s}{:2s}'.format("##", "Current FCF Margin: "+ str(current_fcf_margin_percentage), "##" ))
     print('\t{:2s}\t{:162s}{:2s}'.format("##", "Last updated: "+ str(fcf_margin_percentage_last_updated), "##" ))
     print("\t############################################################################################################################################################################")
-
+    
     ### Calculate beta for risk factoring
-    current_beta, beta_last_updated = download_csv.download_beta_for_stock_ticker(stock_ticker).split(",")
+    current_beta, beta_last_updated = download_stock_statistics.download_beta_for_stock_ticker(stock_ticker).split(",")
 
     if (beta_last_updated == "(As of Today)"):
         beta_last_updated = datetime.datetime.now()
