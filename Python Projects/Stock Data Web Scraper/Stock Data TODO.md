@@ -1,6 +1,6 @@
 # TODO - Stock Data file #
 * Version 1.1.1
-* Last updated 8/24/2021 - Ted Strombeck
+* Last updated 8/24/2021
 
 ### Big Ideas ###
 ------------------------------------------------------------------------------------------------
