@@ -1,6 +1,6 @@
 # TODO - Stock Data file #
-* Version 1.0.1
-* Last updated 8/23/2021 - Ted Strombeck
+* Version 1.0.2
+* Last updated 8/24/2021 - Ted Strombeck
 
 ### Big Ideas ###
 ------------------------------------------------------------------------------------------------
@@ -30,3 +30,8 @@ TODO List
 - [x] Trying and catching errors so it doesn't crash if internet is slow, etc.
 - [ ] Code cleanup/refactoring for clean_file.py
 - [ ] Code cleanup/refactoring for csv_interpreter.py
+- [ ] Generate reports functionality
+- [ ] Read in all csv files related to a given day
+- [ ] Write multiple csv files into a singular csv file
+- [ ] Functionality for archiving all files that were successfully combined into a new csv file
+- [ ] Create daily chart functionality
