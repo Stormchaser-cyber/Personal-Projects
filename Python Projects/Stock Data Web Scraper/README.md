@@ -1,4 +1,6 @@
-# This is the README.md for the Stock Data Web Scraper Project #
+# This is the README.md for the Stock Data Web Scraper Project#
+* Version 1.0.1
+* Last updated 8/24/2021
 ----
 
 ### What is this Code for? ###
@@ -9,10 +11,11 @@ and print a little report to the screen as well.
 
 ### How to use ###
 ----
-* This project uses my own filepathing methods and since it isn't refactored to handle inputted file pathing,
-an individual will have to go in and manually change the filepaths for each python3 file
-* Once that is complete, you can run the python3 script either from the command line or from an editor and the 
-rest will be taken care of by the program.
+* I have updated the file-pathing methods to be more widely used. It now supports windows and linux.
+* In order to run the application you would need to navigate to the directory (in the command line) that 
+the stock_data_web_scraper_bot.py file is located in and run the following command via the command line
+` python stock_data_web_scraper_bot.py `
+* If done correctly, you'll see the stock bot graphic appear and it automatically open up a chrome window and start working
 
 ### What is here? ###
 ----
@@ -23,7 +26,10 @@ rest will be taken care of by the program.
 * Stock Data TODO.md: TODO file containing next steps to do
 * csv_interpretter.py: Parses and fills out missing information in the downloaded stock data files
 * download_csv.py: Downloads a stock data spreadsheet
+* download_stock_statisctics.py: Downloads certain stats for stocks to use in the candidate reporting
+* file_pathing_helper.py: helps grab current directories needed to run this bot
 * moving_files.py: Moves files from one directory to another
+* run_tests.py: primary test file
 * stock_data_web_scraper_bot.py: Main bot logic that runs other python3 scripts in this directory
 * stock_data_web_scraper_bot_laptop_version.py: currently nonfunctional - same script as stock_data_web_scraper_bot.py
 
