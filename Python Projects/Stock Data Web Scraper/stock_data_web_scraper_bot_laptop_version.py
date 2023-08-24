@@ -1,3 +1,8 @@
+# CURRENTLY NOT FUNCTIONAL
+#
+#
+#
+#
 # stock_data_web_scraper_bot_laptop_version
 #
 # Created -- Ted Strombeck -- August 2021
