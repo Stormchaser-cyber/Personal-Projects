@@ -1,20 +1,28 @@
 # TODO - Stock Data file #
-* Version 1.0.3
+* Version 1.1.1
 * Last updated 8/24/2021 - Ted Strombeck
 
 ### Big Ideas ###
 ------------------------------------------------------------------------------------------------
-- [ ] The Trading logic
 - [x] Web scraper
 - [x] Scraping Stock Information in Real Time
-- [x] Gathering any previous data as well?
-- [ ] GUI implemetation?
+- [x] Data Interpreter
+- [ ] Stock Recommendation
+- [ ] The Trading logic
+- [ ] GUI implemetation/app for bot access/control
 
-Things to Implement
+Features
 ------------------------------------------------------------------------------------------------
-- [x] Which scraper module to use
-- [x] Gathering data and storing data into lists or some data structure?
-- [x] Information Gathered? - (Date, Time, Stock Name, Price, Type -- Stock/Bond/Crypto)
+- [x] Web scraper module
+- [x] Gathering data and storing data via csv's
+- [x] Information Gathered - (Date, Time, Stock Name, Price, Type -- Stock/Bond/Crypto)
+- [ ] Csv Data Interpretter
+- [ ] Finding Contenders
+- [ ] Combining Data from multipe readings into a single file
+- [ ] Contenders to Csv
+- [ ] Debugging/Error Identification Process
+- [ ] Application Beautification
+- [ ] App Wide Unit Testing
 
 TODO List
 ------------------------------------------------------------------------------------------------
