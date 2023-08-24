@@ -1,14 +1,15 @@
 # run_tests.py
 #
 # Created -- Ted Strombeck -- August 3, 2023
-# Last Updated -- August 3, 2023
-# Version 1.0.0
+# Last Updated -- August 24, 2023
+# Version 1.0.1
 #
 
 import unittest
 import download_csv
 import moving_files
 import os
+import file_pathing_helper as path_helper
 
 import selenium.common.exceptions as exceptions
 
@@ -23,7 +24,7 @@ class TestDownloadCsv(unittest.TestCase):
         download_csv.main()
 
         # check download folder to make sure file was correctly downloaded
-        files_downloaded = moving_files.scan_folder('C:/Users/tedst/Downloads', 'nasdaq_screener')
+        files_downloaded = moving_files.scan_folder(path_helper.get_download_path(), 'nasdaq_screener')
 
         # checking to make sure that one or more files were downloaded correctly
         self.assertNotEqual(len(files_downloaded), 0)
@@ -47,10 +48,10 @@ def run_all_tests():
 
 def main():
     # remove test files
-    test_files_downloaded = moving_files.scan_folder('C:/Users/tedst/Downloads', 'nasdaq_screener')
+    test_files_downloaded = moving_files.scan_folder(path_helper.get_download_path(), 'nasdaq_screener')
 
     for file in test_files_downloaded:
-        os.remove('C:/Users/tedst/Downloads/'+file)
+        os.remove(path_helper.get_download_path()+'\\'+file)
 
     run_all_tests()
 

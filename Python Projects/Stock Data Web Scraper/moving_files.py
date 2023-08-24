@@ -1,12 +1,14 @@
 # moving_downloaded_file.py file
 #
 # Created -- Ted Strombeck -- July 2021
-# Last Updated -- July 31, 2023
-# Version 1.0.1
+# Last Updated -- August 24th, 2023
+# Version 1.0.2
 #
 import shutil
+import os
 from os import listdir
 from os.path import isfile
+import file_pathing_helper as path_helper
 
 def scan_folder(source_folder, criteria):
     """
@@ -94,8 +96,8 @@ def main():
     """
     criteria = 'nasdaq_screener'
     file_name = 'nasdaq_screener_1626390668384.csv'
-    source_folder = 'C:/Users/tedst/Downloads'
-    destination_folder = 'C:/Users/tedst/source/repos/Personal-Projects/Python Projects/Stock Data Web Scraper/Stock Spreadsheets'
+    source_folder = path_helper.get_download_path()
+    destination_folder = path_helper.get_current_working_directory()+'/Stock Spreadsheets'
 
     items_to_move = scan_folder(source_folder, criteria)
 

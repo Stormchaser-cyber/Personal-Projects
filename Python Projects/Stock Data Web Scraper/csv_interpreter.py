@@ -89,11 +89,11 @@ def rename_file(file_name):
     String
         file_name: the name of the file to be renamed
     """
-    #local_file_path = 'C:/Users/tedst/source/repos/Personal-Projects/Python Projects/Stock Data Web Scraper/Stock Spreadsheets/'
+    local_file_path = filepath+'/Stock Spreadsheets/'
     destination_path = filepath+'/Stock Spreadsheets/Sorted Records/'
     current_time = datetime.datetime.now()
     new_file_name = 'nasdaq_screener_%s_%s_%s__%s_%s_%s.csv' % (current_time.year, current_time.month, current_time.day, current_time.hour, current_time.minute, current_time.second) 
-    os.rename(file_path + file_name, destination_path + new_file_name)
+    os.rename(local_file_path + file_name, destination_path + new_file_name)
 
 def find_most_recent_nasdaq_screener_file(source_folder_file_path):
     """
