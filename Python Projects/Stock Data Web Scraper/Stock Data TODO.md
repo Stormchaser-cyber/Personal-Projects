@@ -1,6 +1,6 @@
 # TODO - Stock Data file #
-* Version 1.0
-* Last updated 9/29/2021 - Ted Strombeck
+* Version 1.0.1
+* Last updated 8/23/2021 - Ted Strombeck
 
 ### Big Ideas ###
 ------------------------------------------------------------------------------------------------
@@ -8,6 +8,7 @@
 - [x] Web scraper
 - [x] Scraping Stock Information in Real Time
 - [x] Gathering any previous data as well?
+- [ ] GUI implemetation?
 
 Things to Implement
 ------------------------------------------------------------------------------------------------
@@ -23,7 +24,9 @@ TODO List
 - [x] Get web scraper to work
 - [x] Converting and cleaning up downloaded csv stock files
 - [x] Saving it into a csv with the format "nasdaq_screener_DD_MM_YYYY__HH_MM_SS"
-- [ ] Running anaylsis on stock files for best stocks?
+- [x] Running anaylsis on stock files for best stocks?
+- [ ] Creating a "score" for each stock to determine best stocks
 - [ ] Trading logic
-- [ ] Trying and catching errors so it doesn't crash if internet is slow, etc.
-- [ ] Finished product
+- [x] Trying and catching errors so it doesn't crash if internet is slow, etc.
+- [ ] Code cleanup/refactoring for clean_file.py
+- [ ] Code cleanup/refactoring for csv_interpreter.py
