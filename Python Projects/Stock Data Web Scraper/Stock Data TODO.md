@@ -1,5 +1,5 @@
 # TODO - Stock Data file #
-* Version 1.0.2
+* Version 1.0.3
 * Last updated 8/24/2021 - Ted Strombeck
 
 ### Big Ideas ###
@@ -35,3 +35,5 @@ TODO List
 - [ ] Write multiple csv files into a singular csv file
 - [ ] Functionality for archiving all files that were successfully combined into a new csv file
 - [ ] Create daily chart functionality
+- [ ] Create initial contenders file
+- [ ] Create csv based on Contender (export contender data to csv file)
