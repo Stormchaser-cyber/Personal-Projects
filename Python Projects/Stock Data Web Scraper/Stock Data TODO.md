@@ -1,6 +1,6 @@
 # TODO - Stock Data file #
-* Version 1.1.1
-* Last updated 8/24/2023
+* Version 1.1.3
+* Last updated 8/30/2023
 
 ### Big Ideas ###
 ------------------------------------------------------------------------------------------------
@@ -33,11 +33,11 @@ TODO List
 - [x] Converting and cleaning up downloaded csv stock files
 - [x] Saving it into a csv with the format "nasdaq_screener_DD_MM_YYYY__HH_MM_SS"
 - [x] Running anaylsis on stock files for best stocks?
-- [ ] Creating a "score" for each stock to determine best stocks
+- [x] Creating a "score" for each stock to determine best stocks
 - [ ] Trading logic
 - [x] Trying and catching errors so it doesn't crash if internet is slow, etc.
-- [ ] Code cleanup/refactoring for clean_file.py
-- [ ] Code cleanup/refactoring for csv_interpreter.py
+- [x] Code cleanup/refactoring for clean_file.py
+- [x] Code cleanup/refactoring for csv_interpreter.py
 - [ ] Generate reports functionality
 - [ ] Read in all csv files related to a given day
 - [ ] Write multiple csv files into a singular csv file
