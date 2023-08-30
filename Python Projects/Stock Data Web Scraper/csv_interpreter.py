@@ -1,8 +1,8 @@
 # csv_interpreter.py file
 #
 # Created -- Ted Strombeck -- July 2021
-# Last Updated -- August 24, 2023
-# Version 1.0.11
+# Last Updated -- August 30, 2023
+# Version 1.0.12
 #
 
 import os
@@ -14,6 +14,7 @@ import download_csv
 import download_stock_statistics
 import datetime
 import time
+import scores
 
 filepath = os.getcwd()
 
@@ -21,7 +22,7 @@ filepath = os.getcwd()
 #   - process csv files that haven't been sorted yet --------->     Done    |
 #   - move the files once they have been processed ----------->     Done    |
 #   - search files for oldest file on record ----------------->     Done    |
-#   - create functionality to generate reports for ----------->  Working on |
+#   - create functionality to generate reports for ----------->     Done    |
 #     individual stocks based on newest and oldest                          |
 #     data that we have. (Searchable by ticker)                             |
 #   - revise clean_file logic -------------------------------->     Done    |
@@ -277,94 +278,69 @@ def generate_candidate_report(stock_ticker):
     # p/e = (price per share) / (earnings per share)
     eps, pe = download_stock_statistics.download_pe_and_eps_for_stock_ticker(stock_ticker).split(",")
     
-    ### calculate EPS
+    ### calculate EPS (between 1 - 99)
     # earnings per share = (company's net profit) / (outstanding common shares) <- grab from https://www.nasdaq.com/market-activity/stocks/{desired stock ticker}
+    printSubMessage(["EPS: "+ str(eps),"P/E Ratio: "+ str(pe)])
 
-    print("\n\t############################################################################################################################################################################")
-    print('\t{:2s}\t{:162s}{:2s}'.format("##", "EPS: "+ str(eps), "##" ))
-    print('\t{:2s}\t{:162s}{:2s}'.format("##", "P/E Ratio: "+ str(pe), "##" ))
-    print("\t############################################################################################################################################################################")
-
-
-    ### calculate P/B -- high pb ratio means stocks perceived to be overvalued, lower pb ratio means stock is more undervalued. P/b of 1.0 or 2.0 is pretty good to invest in
+    ### calculate P/B -- high pb ratio means stocks perceived to be overvalued, lower pb ratio means stock is more undervalued. 
+    # P/b of 1.0 or 2.0 is pretty good to invest in
     current_pb, min_pb, med_pb, max_pb = download_stock_statistics.download_pb_for_stock_ticker(stock_ticker).split(",")
+    printSubMessage(["Current PB: "+ str(current_pb), "Min PB: "+ str(min_pb),"Med PB: "+ str(med_pb),"Max PB: "+ str(max_pb)])
 
-    print("\n\t############################################################################################################################################################################")
-    print('\t{:2s}\t{:162s}{:2s}'.format("##", "Current PB: "+ str(current_pb), "##" ))
-    print('\t{:2s}\t{:162s}{:2s}'.format("##", "Min PB: "+ str(min_pb), "##" ))
-    print('\t{:2s}\t{:162s}{:2s}'.format("##", "Med PB: "+ str(med_pb), "##" ))
-    print('\t{:2s}\t{:162s}{:2s}'.format("##", "Max PB: "+ str(max_pb), "##" ))
-    print("\t############################################################################################################################################################################")
-
-    ### calculate Dividend Yield
+    ### calculate Dividend Yield -> between 2% and 5%
     current_dividend_yield, min_dividend_yield, med_dividend_yield, max_dividend_yield = download_stock_statistics.download_dividend_yield_for_stock_ticker(stock_ticker).split(",")
+    printSubMessage(["Current Dividend Yield: "+ str(current_dividend_yield), "Min Dividend Yield: "+ str(min_dividend_yield),"Med Dividend Yield: "+ str(med_dividend_yield),"Max Dividend Yield: "+ str(max_dividend_yield)])
 
-    print("\n\t############################################################################################################################################################################")
-    print('\t{:2s}\t{:162s}{:2s}'.format("##", "Current Dividend Yield: "+ str(current_dividend_yield), "##" ))
-    print('\t{:2s}\t{:162s}{:2s}'.format("##", "Min Dividend Yield: "+ str(min_dividend_yield), "##" ))
-    print('\t{:2s}\t{:162s}{:2s}'.format("##", "Med Dividend Yield: "+ str(med_dividend_yield), "##" ))
-    print('\t{:2s}\t{:162s}{:2s}'.format("##", "Max Dividend Yield: "+ str(max_dividend_yield), "##" ))
-    print("\t############################################################################################################################################################################")
-
-    ### calculate Growth Rates (historical and projected earnings)
+    ### calculate Growth Rates (historical and projected earnings) 60% or higher
     current_yoy_ebitda_growth_rate, ebitda_last_updated = download_stock_statistics.download_yoy_ebitda_growth_rate_for_stock_ticker(stock_ticker).split(",")
+    printSubMessage(["Current Ebitda 5 year Growth Rate: "+ str(current_yoy_ebitda_growth_rate),"Last updated: "+ str(ebitda_last_updated)])
 
-    print("\n\t############################################################################################################################################################################")
-    print('\t{:2s}\t{:162s}{:2s}'.format("##", "Current Ebitda 5 year Growth Rate: "+ str(current_yoy_ebitda_growth_rate), "##" ))
-    print('\t{:2s}\t{:162s}{:2s}'.format("##", "Last updated: "+ str(ebitda_last_updated), "##" ))
-    print("\t############################################################################################################################################################################")
-
-    ### calculate debt-to-equity ratio
+    ### calculate debt-to-equity ratio -> good is less than 1
     current_d2e, min_d2e, med_d2e, max_d2e = download_stock_statistics.download_debt_to_equity_for_stock_ticker(stock_ticker).split(",")
-
-    print("\n\t############################################################################################################################################################################")
-    print('\t{:2s}\t{:162s}{:2s}'.format("##", "Current Debt-to-Equity: "+ str(current_d2e), "##" ))
-    print('\t{:2s}\t{:162s}{:2s}'.format("##", "Min Debt-to-Equity: "+ str(min_d2e), "##" ))
-    print('\t{:2s}\t{:162s}{:2s}'.format("##", "Med Debt-to-Equity: "+ str(med_d2e), "##" ))
-    print('\t{:2s}\t{:162s}{:2s}'.format("##", "Max Debt-to-Equity: "+ str(max_d2e), "##" ))
-    print("\t############################################################################################################################################################################")
+    printSubMessage(["Current Debt-to-Equity: "+ str(current_d2e), "Min Debt-to-Equity: "+ str(min_d2e),"Med Debt-to-Equity: "+ str(med_d2e),"Max Debt-to-Equity: "+ str(max_d2e)])
     
-    ### calculate ROE
+    ### calculate ROE 15% - 20%
     current_roe, min_roe, med_roe, max_roe = download_stock_statistics.download_roe_percentage_for_stock_ticker(stock_ticker).split(",")
+    printSubMessage(["Current ROE: "+ str(current_roe), "Min ROE: "+ str(min_roe),"Med ROE: "+ str(med_roe),"Max ROE: "+ str(max_roe)])
 
-    print("\n\t############################################################################################################################################################################")
-    print('\t{:2s}\t{:162s}{:2s}'.format("##", "Current ROE: "+ str(current_roe), "##" ))
-    print('\t{:2s}\t{:162s}{:2s}'.format("##", "Min ROE: "+ str(min_roe), "##" ))
-    print('\t{:2s}\t{:162s}{:2s}'.format("##", "Med ROE: "+ str(med_roe), "##" ))
-    print('\t{:2s}\t{:162s}{:2s}'.format("##", "Max ROE: "+ str(max_roe), "##" ))
-    print("\t############################################################################################################################################################################")
-
-    ### calculate operating margin
+    ### calculate operating margin 15% or higher
     current_operating_margin_percentage, min_operating_margin_percentage, med_operating_margin_percentage, max_operating_margin_percentage = download_stock_statistics.download_operating_margin_percentage_for_stock_ticker(stock_ticker).split(",")
-
-    print("\n\t############################################################################################################################################################################")
-    print('\t{:2s}\t{:162s}{:2s}'.format("##", "Current Operating Margin: "+ str(current_operating_margin_percentage)+"%", "##" ))
-    print('\t{:2s}\t{:162s}{:2s}'.format("##", "Min Operating Margin: "+ str(min_operating_margin_percentage)+"%", "##" ))
-    print('\t{:2s}\t{:162s}{:2s}'.format("##", "Med Operating Margin: "+ str(med_operating_margin_percentage)+"%", "##" ))
-    print('\t{:2s}\t{:162s}{:2s}'.format("##", "Max Operating Margin: "+ str(max_operating_margin_percentage)+"%", "##" ))
-    print("\t############################################################################################################################################################################")
+    printSubMessage(["Current Operating Margin: "+ str(current_operating_margin_percentage)+"%", "Min Operating Margin: "+ str(min_operating_margin_percentage)+"%","Med Operating Margin: "+ str(med_operating_margin_percentage)+"%","Max Operating Margin: "+ str(max_operating_margin_percentage)+"%"])
     
-    ### calculate FCF
+    ### calculate FCF between 20% - 25%
     current_fcf_margin_percentage, fcf_margin_percentage_last_updated = download_stock_statistics.download_fcf_margin_percentage_for_stock_ticker(stock_ticker).split(",")
-
-    print("\n\t############################################################################################################################################################################")
-    print('\t{:2s}\t{:162s}{:2s}'.format("##", "Current FCF Margin: "+ str(current_fcf_margin_percentage), "##" ))
-    print('\t{:2s}\t{:162s}{:2s}'.format("##", "Last updated: "+ str(fcf_margin_percentage_last_updated), "##" ))
-    print("\t############################################################################################################################################################################")
+    printSubMessage(["Current FCF Margin: "+ str(current_fcf_margin_percentage), "Last updated: "+ str(fcf_margin_percentage_last_updated)])
     
-    ### Calculate beta for risk factoring
+    ### Calculate beta for risk factoring -> 1 is neutral or average level of risk
     current_beta, beta_last_updated = download_stock_statistics.download_beta_for_stock_ticker(stock_ticker).split(",")
 
     if (beta_last_updated == "(As of Today)"):
         beta_last_updated = datetime.datetime.now()
+    
+    printSubMessage(["Current Beta: " + str(current_beta), "Last updated: " + str(beta_last_updated)])
 
+    ### stock's final score each category is calculated to be in a % range between 1 and 100 
+    # with 100 being the highest possible score
+    pe_score = scores.calculate_pe_score(float(pe))
+    eps_score = scores.calculate_eps_score(float(eps[1:]))
+    pb_score = scores.calculate_pb_score(float(current_pb), float(min_pb), float(med_pb), float(max_pb))
+    dividend_yield_score = scores.calculate_dividend_yield_score(float(current_dividend_yield), float(min_dividend_yield), float(med_dividend_yield), float(max_dividend_yield))
+    ebitda_growth_rate_score = scores.calculate_ebitda_growth_rate_score(float(current_yoy_ebitda_growth_rate[:-1]))
+    d2e_score = scores.calculate_debt_to_equity_score(float(current_d2e), float(min_d2e), float(med_d2e), float(max_d2e))
+    roe_score = scores.calculate_roe_score(float(current_roe), float(min_roe), float(med_roe), float(max_roe))
+    operating_margin_score = scores.calculate_operating_margin_score(float(current_operating_margin_percentage), float(min_operating_margin_percentage), float(med_operating_margin_percentage), float(max_operating_margin_percentage))
+    fcf_score = scores.calculate_fcf_score(float(current_fcf_margin_percentage[:-1]))
+
+    score_collection = [pe_score,eps_score,pb_score,dividend_yield_score,ebitda_growth_rate_score,d2e_score,roe_score,operating_margin_score,fcf_score]
+
+    ## stock's risk level recommendation 
+    
+
+def printSubMessage(messages):
     print("\n\t############################################################################################################################################################################")
-    print('\t{:2s}\t{:162s}{:2s}'.format("##", "Current Beta: "+ str(current_beta), "##" ))
-    print('\t{:2s}\t{:162s}{:2s}'.format("##", "Last updated: "+ str(beta_last_updated), "##" ))
+    for message in messages:
+        print('\t{:2s}\t{:162s}{:2s}'.format("##", message, "##" ))
     print("\t############################################################################################################################################################################")
-
-    ### generate file based on key stats from above
-
 
 def main():
     criteria = 'nasdaq_screener'
