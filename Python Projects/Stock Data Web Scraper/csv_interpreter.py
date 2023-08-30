@@ -2,7 +2,7 @@
 #
 # Created -- Ted Strombeck -- July 2021
 # Last Updated -- August 24, 2023
-# Version 1.0.10
+# Version 1.0.11
 #
 
 import os
@@ -24,7 +24,7 @@ filepath = os.getcwd()
 #   - create functionality to generate reports for ----------->  Working on |
 #     individual stocks based on newest and oldest                          |
 #     data that we have. (Searchable by ticker)                             |
-#   - revise clean_file logic -------------------------------->             |
+#   - revise clean_file logic -------------------------------->     Done    |
 #   - make contenders csv file ------------------------------->             |
 #   - place contending stocks into contender csv file -------->             |
 #           - make sure not to overwrite any stocks ---------->             |
