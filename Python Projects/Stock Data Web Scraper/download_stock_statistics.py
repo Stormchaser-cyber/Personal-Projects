@@ -650,3 +650,6 @@ def download_beta_for_stock_ticker(stock_ticker):
 
     #return beta stats
     return "{:s},{:s}".format(current_value,last_updated)
+
+if __name__ == '__main__':
+    download_beta_for_stock_ticker("AAPL")
